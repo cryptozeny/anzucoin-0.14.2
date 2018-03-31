@@ -35,7 +35,7 @@ PORT_MIN = 11000
 # The number of ports to "reserve" for p2p and rpc, each
 PORT_RANGE = 5000
 
-BITCOIND_PROC_WAIT_TIMEOUT = 60
+ANZUCOIND_PROC_WAIT_TIMEOUT = 60
 
 
 class PortSeed:
@@ -249,7 +249,7 @@ def initialize_chain(test_dir, num_nodes, cachedir):
         # Create cache directories, run anzucoinds:
         for i in range(MAX_NODES):
             datadir=initialize_datadir(cachedir, i)
-            args = [ os.getenv("BITCOIND", "anzucoind"), "-server", "-keypool=1", "-datadir="+datadir, "-discover=0" ]
+            args = [ os.getenv("ANZUCOIND", "anzucoind"), "-server", "-keypool=1", "-datadir="+datadir, "-discover=0" ]
             if i > 0:
                 args.append("-connect=127.0.0.1:"+str(p2p_port(0)))
             anzucoind_processes[i] = subprocess.Popen(args)
@@ -335,7 +335,7 @@ def start_node(i, dirname, extra_args=None, rpchost=None, timewait=None, binary=
     """
     datadir = os.path.join(dirname, "node"+str(i))
     if binary is None:
-        binary = os.getenv("BITCOIND", "anzucoind")
+        binary = os.getenv("ANZUCOIND", "anzucoind")
     args = [ binary, "-datadir="+datadir, "-server", "-keypool=1", "-discover=0", "-rest", "-mocktime="+str(get_mocktime()) ]
     if extra_args is not None: args.extend(extra_args)
     anzucoind_processes[i] = subprocess.Popen(args)
@@ -375,7 +375,7 @@ def stop_node(node, i):
         node.stop()
     except http.client.CannotSendRequest as e:
         print("WARN: Unable to stop node: " + repr(e))
-    return_code = anzucoind_processes[i].wait(timeout=BITCOIND_PROC_WAIT_TIMEOUT)
+    return_code = anzucoind_processes[i].wait(timeout=ANZUCOIND_PROC_WAIT_TIMEOUT)
     assert_equal(return_code, 0)
     del anzucoind_processes[i]
 

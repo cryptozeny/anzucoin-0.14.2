@@ -19,14 +19,14 @@ fi
 RETVAL=0
 
 prog=anzucoind
-# you can override the lockfile via BITCOIND_LOCKFILE in /etc/sysconfig/anzucoind
-lockfile=${BITCOIND_LOCKFILE-/var/lock/subsys/anzucoind}
+# you can override the lockfile via ANZUCOIND_LOCKFILE in /etc/sysconfig/anzucoind
+lockfile=${ANZUCOIND_LOCKFILE-/var/lock/subsys/anzucoind}
 
-# anzucoind defaults to /usr/bin/anzucoind, override with BITCOIND_BIN
-anzucoind=${BITCOIND_BIN-/usr/bin/anzucoind}
+# anzucoind defaults to /usr/bin/anzucoind, override with ANZUCOIND_BIN
+anzucoind=${ANZUCOIND_BIN-/usr/bin/anzucoind}
 
-# anzucoind opts default to -disablewallet, override with BITCOIND_OPTS
-anzucoind_opts=${BITCOIND_OPTS--disablewallet}
+# anzucoind opts default to -disablewallet, override with ANZUCOIND_OPTS
+anzucoind_opts=${ANZUCOIND_OPTS--disablewallet}
 
 start() {
     echo -n $"Starting $prog: "

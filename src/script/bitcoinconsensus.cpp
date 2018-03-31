@@ -125,5 +125,5 @@ int anzucoinconsensus_verify_script(const unsigned char *scriptPubKey, unsigned 
 unsigned int anzucoinconsensus_version()
 {
     // Just use the API version for now
-    return BITCOINCONSENSUS_API_VER;
+    return ANZUCOINCONSENSUS_API_VER;
 }

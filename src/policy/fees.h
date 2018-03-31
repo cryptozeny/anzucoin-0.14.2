@@ -2,8 +2,8 @@
 // Copyright (c) 2009-2016 The Anzucoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
-#ifndef BITCOIN_POLICYESTIMATOR_H
-#define BITCOIN_POLICYESTIMATOR_H
+#ifndef ANZUCOIN_POLICYESTIMATOR_H
+#define ANZUCOIN_POLICYESTIMATOR_H
 
 #include "amount.h"
 #include "uint256.h"
@@ -276,4 +276,4 @@ private:
     std::set<double> feeset;
     FastRandomContext insecure_rand;
 };
-#endif /*BITCOIN_POLICYESTIMATOR_H */
+#endif /*ANZUCOIN_POLICYESTIMATOR_H */

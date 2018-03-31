@@ -104,7 +104,7 @@ use old versions of Upstart and do not supply the start-stop-daemon utility.
 Copy anzucoind.init to /etc/init.d/anzucoind. Test by running `service anzucoind start`.
 
 Using this script, you can adjust the path and flags to the anzucoind program by
-setting the BITCOIND and FLAGS environment variables in the file
+setting the ANZUCOIND and FLAGS environment variables in the file
 /etc/sysconfig/anzucoind. You can also use the DAEMONOPTS environment variable here.
 
 4e) Mac OS X

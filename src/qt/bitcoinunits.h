@@ -2,8 +2,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_QT_BITCOINUNITS_H
-#define BITCOIN_QT_BITCOINUNITS_H
+#ifndef ANZUCOIN_QT_ANZUCOINUNITS_H
+#define ANZUCOIN_QT_ANZUCOINUNITS_H
 
 #include "amount.h"
 
@@ -125,4 +125,4 @@ private:
 };
 typedef AnzucoinUnits::Unit AnzucoinUnit;
 
-#endif // BITCOIN_QT_BITCOINUNITS_H
+#endif // ANZUCOIN_QT_ANZUCOINUNITS_H

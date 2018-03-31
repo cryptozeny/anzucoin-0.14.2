@@ -108,7 +108,7 @@ class TestNode(NodeConnCB):
 class AcceptBlockTest(AnzucoinTestFramework):
     def add_options(self, parser):
         parser.add_option("--testbinary", dest="testbinary",
-                          default=os.getenv("BITCOIND", "anzucoind"),
+                          default=os.getenv("ANZUCOIND", "anzucoind"),
                           help="anzucoind binary to test")
 
     def __init__(self):

@@ -2,8 +2,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_QT_SENDCOINSENTRY_H
-#define BITCOIN_QT_SENDCOINSENTRY_H
+#ifndef ANZUCOIN_QT_SENDCOINSENTRY_H
+#define ANZUCOIN_QT_SENDCOINSENTRY_H
 
 #include "walletmodel.h"
 
@@ -70,4 +70,4 @@ private:
     bool updateLabel(const QString &address);
 };
 
-#endif // BITCOIN_QT_SENDCOINSENTRY_H
+#endif // ANZUCOIN_QT_SENDCOINSENTRY_H

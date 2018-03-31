@@ -11,8 +11,8 @@
  * - E-mail usually won't line-break if there's no punctuation to break at.
  * - Double-clicking selects the whole string as one word if it's all alphanumeric.
  */
-#ifndef BITCOIN_BASE58_H
-#define BITCOIN_BASE58_H
+#ifndef ANZUCOIN_BASE58_H
+#define ANZUCOIN_BASE58_H
 
 #include "chainparams.h"
 #include "key.h"
@@ -167,4 +167,4 @@ public:
 typedef CAnzucoinExtKeyBase<CExtKey, BIP32_EXTKEY_SIZE, CChainParams::EXT_SECRET_KEY> CAnzucoinExtKey;
 typedef CAnzucoinExtKeyBase<CExtPubKey, BIP32_EXTKEY_SIZE, CChainParams::EXT_PUBLIC_KEY> CAnzucoinExtPubKey;
 
-#endif // BITCOIN_BASE58_H
+#endif // ANZUCOIN_BASE58_H

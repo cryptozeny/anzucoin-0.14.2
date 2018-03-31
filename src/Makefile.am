@@ -18,29 +18,29 @@ else
 LIBUNIVALUE = $(UNIVALUE_LIBS)
 endif
 
-BITCOIN_CONFIG_INCLUDES=-I$(builddir)/config
-BITCOIN_INCLUDES=-I$(builddir) -I$(builddir)/obj $(BDB_CPPFLAGS) $(BOOST_CPPFLAGS) $(LEVELDB_CPPFLAGS) $(CRYPTO_CFLAGS) $(SSL_CFLAGS)
+ANZUCOIN_CONFIG_INCLUDES=-I$(builddir)/config
+ANZUCOIN_INCLUDES=-I$(builddir) -I$(builddir)/obj $(BDB_CPPFLAGS) $(BOOST_CPPFLAGS) $(LEVELDB_CPPFLAGS) $(CRYPTO_CFLAGS) $(SSL_CFLAGS)
 
-BITCOIN_INCLUDES += -I$(srcdir)/secp256k1/include
-BITCOIN_INCLUDES += $(UNIVALUE_CFLAGS)
+ANZUCOIN_INCLUDES += -I$(srcdir)/secp256k1/include
+ANZUCOIN_INCLUDES += $(UNIVALUE_CFLAGS)
 
-LIBBITCOIN_SERVER=libanzucoin_server.a
-LIBBITCOIN_COMMON=libanzucoin_common.a
-LIBBITCOIN_CONSENSUS=libanzucoin_consensus.a
-LIBBITCOIN_CLI=libanzucoin_cli.a
-LIBBITCOIN_UTIL=libanzucoin_util.a
-LIBBITCOIN_CRYPTO=crypto/libanzucoin_crypto.a
-LIBBITCOINQT=qt/libanzucoinqt.a
+LIBANZUCOIN_SERVER=libanzucoin_server.a
+LIBANZUCOIN_COMMON=libanzucoin_common.a
+LIBANZUCOIN_CONSENSUS=libanzucoin_consensus.a
+LIBANZUCOIN_CLI=libanzucoin_cli.a
+LIBANZUCOIN_UTIL=libanzucoin_util.a
+LIBANZUCOIN_CRYPTO=crypto/libanzucoin_crypto.a
+LIBANZUCOINQT=qt/libanzucoinqt.a
 LIBSECP256K1=secp256k1/libsecp256k1.la
 
 if ENABLE_ZMQ
-LIBBITCOIN_ZMQ=libanzucoin_zmq.a
+LIBANZUCOIN_ZMQ=libanzucoin_zmq.a
 endif
-if BUILD_BITCOIN_LIBS
-LIBBITCOINCONSENSUS=libanzucoinconsensus.la
+if BUILD_ANZUCOIN_LIBS
+LIBANZUCOINCONSENSUS=libanzucoinconsensus.la
 endif
 if ENABLE_WALLET
-LIBBITCOIN_WALLET=libanzucoin_wallet.a
+LIBANZUCOIN_WALLET=libanzucoin_wallet.a
 endif
 
 $(LIBSECP256K1): $(wildcard secp256k1/src/*) $(wildcard secp256k1/include/*)
@@ -49,33 +49,33 @@ $(LIBSECP256K1): $(wildcard secp256k1/src/*) $(wildcard secp256k1/include/*)
 # Make is not made aware of per-object dependencies to avoid limiting building parallelization
 # But to build the less dependent modules first, we manually select their order here:
 EXTRA_LIBRARIES += \
-  $(LIBBITCOIN_CRYPTO) \
-  $(LIBBITCOIN_UTIL) \
-  $(LIBBITCOIN_COMMON) \
-  $(LIBBITCOIN_CONSENSUS) \
-  $(LIBBITCOIN_SERVER) \
-  $(LIBBITCOIN_CLI) \
-  $(LIBBITCOIN_WALLET) \
-  $(LIBBITCOIN_ZMQ)
+  $(LIBANZUCOIN_CRYPTO) \
+  $(LIBANZUCOIN_UTIL) \
+  $(LIBANZUCOIN_COMMON) \
+  $(LIBANZUCOIN_CONSENSUS) \
+  $(LIBANZUCOIN_SERVER) \
+  $(LIBANZUCOIN_CLI) \
+  $(LIBANZUCOIN_WALLET) \
+  $(LIBANZUCOIN_ZMQ)
 
-lib_LTLIBRARIES = $(LIBBITCOINCONSENSUS)
+lib_LTLIBRARIES = $(LIBANZUCOINCONSENSUS)
 
 bin_PROGRAMS =
 noinst_PROGRAMS =
 TESTS =
 BENCHMARKS =
 
-if BUILD_BITCOIND
+if BUILD_ANZUCOIND
   bin_PROGRAMS += anzucoind
 endif
 
-if BUILD_BITCOIN_UTILS
+if BUILD_ANZUCOIN_UTILS
   bin_PROGRAMS += anzucoin-cli anzucoin-tx
 endif
 
 .PHONY: FORCE check-symbols check-security
 # anzucoin core #
-BITCOIN_CORE_H = \
+ANZUCOIN_CORE_H = \
   addrdb.h \
   addrman.h \
   base58.h \
@@ -172,7 +172,7 @@ obj/build.h: FORCE
 libanzucoin_util_a-clientversion.$(OBJEXT): obj/build.h
 
 # server: shared between anzucoind and anzucoin-qt
-libanzucoin_server_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(MINIUPNPC_CPPFLAGS) $(EVENT_CFLAGS) $(EVENT_PTHREADS_CFLAGS)
+libanzucoin_server_a_CPPFLAGS = $(AM_CPPFLAGS) $(ANZUCOIN_INCLUDES) $(MINIUPNPC_CPPFLAGS) $(EVENT_CFLAGS) $(EVENT_PTHREADS_CFLAGS)
 libanzucoin_server_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 libanzucoin_server_a_SOURCES = \
   addrman.cpp \
@@ -210,10 +210,10 @@ libanzucoin_server_a_SOURCES = \
   validation.cpp \
   validationinterface.cpp \
   versionbits.cpp \
-  $(BITCOIN_CORE_H)
+  $(ANZUCOIN_CORE_H)
 
 if ENABLE_ZMQ
-libanzucoin_zmq_a_CPPFLAGS = $(BITCOIN_INCLUDES) $(ZMQ_CFLAGS)
+libanzucoin_zmq_a_CPPFLAGS = $(ANZUCOIN_INCLUDES) $(ZMQ_CFLAGS)
 libanzucoin_zmq_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 libanzucoin_zmq_a_SOURCES = \
   zmq/zmqabstractnotifier.cpp \
@@ -224,7 +224,7 @@ endif
 
 # wallet: shared between anzucoind and anzucoin-qt, but only linked
 # when wallet enabled
-libanzucoin_wallet_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
+libanzucoin_wallet_a_CPPFLAGS = $(AM_CPPFLAGS) $(ANZUCOIN_INCLUDES)
 libanzucoin_wallet_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 libanzucoin_wallet_a_SOURCES = \
   wallet/crypter.cpp \
@@ -234,10 +234,10 @@ libanzucoin_wallet_a_SOURCES = \
   wallet/wallet.cpp \
   wallet/walletdb.cpp \
   policy/rbf.cpp \
-  $(BITCOIN_CORE_H)
+  $(ANZUCOIN_CORE_H)
 
 # crypto primitives library
-crypto_libanzucoin_crypto_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_CONFIG_INCLUDES)
+crypto_libanzucoin_crypto_a_CPPFLAGS = $(AM_CPPFLAGS) $(ANZUCOIN_CONFIG_INCLUDES)
 crypto_libanzucoin_crypto_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 crypto_libanzucoin_crypto_a_SOURCES = \
   crypto/aes.cpp \
@@ -257,7 +257,7 @@ crypto_libanzucoin_crypto_a_SOURCES = \
   crypto/sha512.h
 
 # consensus: shared between all executables that validate any consensus rules.
-libanzucoin_consensus_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
+libanzucoin_consensus_a_CPPFLAGS = $(AM_CPPFLAGS) $(ANZUCOIN_INCLUDES)
 libanzucoin_consensus_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 libanzucoin_consensus_a_SOURCES = \
   amount.h \
@@ -292,7 +292,7 @@ libanzucoin_consensus_a_SOURCES = \
   version.h
 
 # common: shared between anzucoind, and anzucoin-qt and non-server tools
-libanzucoin_common_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
+libanzucoin_common_a_CPPFLAGS = $(AM_CPPFLAGS) $(ANZUCOIN_INCLUDES)
 libanzucoin_common_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 libanzucoin_common_a_SOURCES = \
   amount.cpp \
@@ -311,12 +311,12 @@ libanzucoin_common_a_SOURCES = \
   script/sign.cpp \
   script/standard.cpp \
   warnings.cpp \
-  $(BITCOIN_CORE_H)
+  $(ANZUCOIN_CORE_H)
 
 # util: shared between all executables.
 # This library *must* be included to make sure that the glibc
 # backward-compatibility objects and their sanity checks are linked.
-libanzucoin_util_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
+libanzucoin_util_a_CPPFLAGS = $(AM_CPPFLAGS) $(ANZUCOIN_INCLUDES)
 libanzucoin_util_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 libanzucoin_util_a_SOURCES = \
   support/lockedpool.cpp \
@@ -334,25 +334,25 @@ libanzucoin_util_a_SOURCES = \
   utilmoneystr.cpp \
   utilstrencodings.cpp \
   utiltime.cpp \
-  $(BITCOIN_CORE_H)
+  $(ANZUCOIN_CORE_H)
 
 if GLIBC_BACK_COMPAT
 libanzucoin_util_a_SOURCES += compat/glibc_compat.cpp
 endif
 
 # cli: shared between anzucoin-cli and anzucoin-qt
-libanzucoin_cli_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
+libanzucoin_cli_a_CPPFLAGS = $(AM_CPPFLAGS) $(ANZUCOIN_INCLUDES)
 libanzucoin_cli_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 libanzucoin_cli_a_SOURCES = \
   rpc/client.cpp \
-  $(BITCOIN_CORE_H)
+  $(ANZUCOIN_CORE_H)
 
 nodist_libanzucoin_util_a_SOURCES = $(srcdir)/obj/build.h
 #
 
 # anzucoind binary #
 anzucoind_SOURCES = anzucoind.cpp
-anzucoind_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
+anzucoind_CPPFLAGS = $(AM_CPPFLAGS) $(ANZUCOIN_INCLUDES)
 anzucoind_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 anzucoind_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
@@ -361,14 +361,14 @@ anzucoind_SOURCES += anzucoind-res.rc
 endif
 
 anzucoind_LDADD = \
-  $(LIBBITCOIN_SERVER) \
-  $(LIBBITCOIN_COMMON) \
+  $(LIBANZUCOIN_SERVER) \
+  $(LIBANZUCOIN_COMMON) \
   $(LIBUNIVALUE) \
-  $(LIBBITCOIN_UTIL) \
-  $(LIBBITCOIN_WALLET) \
-  $(LIBBITCOIN_ZMQ) \
-  $(LIBBITCOIN_CONSENSUS) \
-  $(LIBBITCOIN_CRYPTO) \
+  $(LIBANZUCOIN_UTIL) \
+  $(LIBANZUCOIN_WALLET) \
+  $(LIBANZUCOIN_ZMQ) \
+  $(LIBANZUCOIN_CONSENSUS) \
+  $(LIBANZUCOIN_CRYPTO) \
   $(LIBLEVELDB) \
   $(LIBMEMENV) \
   $(LIBSECP256K1)
@@ -377,7 +377,7 @@ anzucoind_LDADD += $(BOOST_LIBS) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUP
 
 # anzucoin-cli binary #
 anzucoin_cli_SOURCES = anzucoin-cli.cpp
-anzucoin_cli_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(EVENT_CFLAGS)
+anzucoin_cli_CPPFLAGS = $(AM_CPPFLAGS) $(ANZUCOIN_INCLUDES) $(EVENT_CFLAGS)
 anzucoin_cli_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 anzucoin_cli_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
@@ -386,17 +386,17 @@ anzucoin_cli_SOURCES += anzucoin-cli-res.rc
 endif
 
 anzucoin_cli_LDADD = \
-  $(LIBBITCOIN_CLI) \
+  $(LIBANZUCOIN_CLI) \
   $(LIBUNIVALUE) \
-  $(LIBBITCOIN_UTIL) \
-  $(LIBBITCOIN_CRYPTO)
+  $(LIBANZUCOIN_UTIL) \
+  $(LIBANZUCOIN_CRYPTO)
 
 anzucoin_cli_LDADD += $(BOOST_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(EVENT_LIBS)
 #
 
 # anzucoin-tx binary #
 anzucoin_tx_SOURCES = anzucoin-tx.cpp
-anzucoin_tx_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
+anzucoin_tx_CPPFLAGS = $(AM_CPPFLAGS) $(ANZUCOIN_INCLUDES)
 anzucoin_tx_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 anzucoin_tx_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
@@ -406,17 +406,17 @@ endif
 
 anzucoin_tx_LDADD = \
   $(LIBUNIVALUE) \
-  $(LIBBITCOIN_COMMON) \
-  $(LIBBITCOIN_UTIL) \
-  $(LIBBITCOIN_CONSENSUS) \
-  $(LIBBITCOIN_CRYPTO) \
+  $(LIBANZUCOIN_COMMON) \
+  $(LIBANZUCOIN_UTIL) \
+  $(LIBANZUCOIN_CONSENSUS) \
+  $(LIBANZUCOIN_CRYPTO) \
   $(LIBSECP256K1)
 
 anzucoin_tx_LDADD += $(BOOST_LIBS) $(CRYPTO_LIBS)
 #
 
 # anzucoinconsensus library #
-if BUILD_BITCOIN_LIBS
+if BUILD_ANZUCOIN_LIBS
 include_HEADERS = script/anzucoinconsensus.h
 libanzucoinconsensus_la_SOURCES = $(crypto_libanzucoin_crypto_a_SOURCES) $(libanzucoin_consensus_a_SOURCES)
 
@@ -426,7 +426,7 @@ endif
 
 libanzucoinconsensus_la_LDFLAGS = $(AM_LDFLAGS) -no-undefined $(RELDFLAGS)
 libanzucoinconsensus_la_LIBADD = $(LIBSECP256K1)
-libanzucoinconsensus_la_CPPFLAGS = $(AM_CPPFLAGS) -I$(builddir)/obj -I$(srcdir)/secp256k1/include -DBUILD_BITCOIN_INTERNAL
+libanzucoinconsensus_la_CPPFLAGS = $(AM_CPPFLAGS) -I$(builddir)/obj -I$(srcdir)/secp256k1/include -DBUILD_ANZUCOIN_INTERNAL
 libanzucoinconsensus_la_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 
 endif

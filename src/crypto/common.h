@@ -2,8 +2,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_CRYPTO_COMMON_H
-#define BITCOIN_CRYPTO_COMMON_H
+#ifndef ANZUCOIN_CRYPTO_COMMON_H
+#define ANZUCOIN_CRYPTO_COMMON_H
 
 #if defined(HAVE_CONFIG_H)
 #include "anzucoin-config.h"
@@ -79,4 +79,4 @@ void static inline WriteBE64(unsigned char* ptr, uint64_t x)
     memcpy(ptr, (char*)&v, 8);
 }
 
-#endif // BITCOIN_CRYPTO_COMMON_H
+#endif // ANZUCOIN_CRYPTO_COMMON_H

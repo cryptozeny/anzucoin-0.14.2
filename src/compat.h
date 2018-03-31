@@ -3,8 +3,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_COMPAT_H
-#define BITCOIN_COMPAT_H
+#ifndef ANZUCOIN_COMPAT_H
+#define ANZUCOIN_COMPAT_H
 
 #if defined(HAVE_CONFIG_H)
 #include "config/anzucoin-config.h"
@@ -91,4 +91,4 @@ bool static inline IsSelectableSocket(SOCKET s) {
 #endif
 }
 
-#endif // BITCOIN_COMPAT_H
+#endif // ANZUCOIN_COMPAT_H

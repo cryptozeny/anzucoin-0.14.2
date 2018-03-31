@@ -3,40 +3,40 @@
 # backward compatibility for existing gentoo layout 
 #
 if [ -d "/var/lib/anzucoin/.anzucoin" ]; then
-	BITCOIND_DEFAULT_DATADIR="/var/lib/anzucoin/.anzucoin"
+	ANZUCOIND_DEFAULT_DATADIR="/var/lib/anzucoin/.anzucoin"
 else
-	BITCOIND_DEFAULT_DATADIR="/var/lib/anzucoind"
+	ANZUCOIND_DEFAULT_DATADIR="/var/lib/anzucoind"
 fi
 
-BITCOIND_CONFIGFILE=${BITCOIND_CONFIGFILE:-/etc/anzucoin/anzucoin.conf}
-BITCOIND_PIDDIR=${BITCOIND_PIDDIR:-/var/run/anzucoind}
-BITCOIND_PIDFILE=${BITCOIND_PIDFILE:-${BITCOIND_PIDDIR}/anzucoind.pid}
-BITCOIND_DATADIR=${BITCOIND_DATADIR:-${BITCOIND_DEFAULT_DATADIR}}
-BITCOIND_USER=${BITCOIND_USER:-${BITCOIN_USER:-anzucoin}}
-BITCOIND_GROUP=${BITCOIND_GROUP:-anzucoin}
-BITCOIND_BIN=${BITCOIND_BIN:-/usr/bin/anzucoind}
-BITCOIND_NICE=${BITCOIND_NICE:-${NICELEVEL:-0}}
-BITCOIND_OPTS="${BITCOIND_OPTS:-${BITCOIN_OPTS}}"
+ANZUCOIND_CONFIGFILE=${ANZUCOIND_CONFIGFILE:-/etc/anzucoin/anzucoin.conf}
+ANZUCOIND_PIDDIR=${ANZUCOIND_PIDDIR:-/var/run/anzucoind}
+ANZUCOIND_PIDFILE=${ANZUCOIND_PIDFILE:-${ANZUCOIND_PIDDIR}/anzucoind.pid}
+ANZUCOIND_DATADIR=${ANZUCOIND_DATADIR:-${ANZUCOIND_DEFAULT_DATADIR}}
+ANZUCOIND_USER=${ANZUCOIND_USER:-${ANZUCOIN_USER:-anzucoin}}
+ANZUCOIND_GROUP=${ANZUCOIND_GROUP:-anzucoin}
+ANZUCOIND_BIN=${ANZUCOIND_BIN:-/usr/bin/anzucoind}
+ANZUCOIND_NICE=${ANZUCOIND_NICE:-${NICELEVEL:-0}}
+ANZUCOIND_OPTS="${ANZUCOIND_OPTS:-${ANZUCOIN_OPTS}}"
 
 name="Anzucoin Core Daemon"
 description="Anzucoin cryptocurrency P2P network daemon"
 
 command="/usr/bin/anzucoind"
-command_args="-pid=\"${BITCOIND_PIDFILE}\" \
-		-conf=\"${BITCOIND_CONFIGFILE}\" \
-		-datadir=\"${BITCOIND_DATADIR}\" \
+command_args="-pid=\"${ANZUCOIND_PIDFILE}\" \
+		-conf=\"${ANZUCOIND_CONFIGFILE}\" \
+		-datadir=\"${ANZUCOIND_DATADIR}\" \
 		-daemon \
-		${BITCOIND_OPTS}"
+		${ANZUCOIND_OPTS}"
 
-required_files="${BITCOIND_CONFIGFILE}"
-start_stop_daemon_args="-u ${BITCOIND_USER} \
-			-N ${BITCOIND_NICE} -w 2000"
-pidfile="${BITCOIND_PIDFILE}"
+required_files="${ANZUCOIND_CONFIGFILE}"
+start_stop_daemon_args="-u ${ANZUCOIND_USER} \
+			-N ${ANZUCOIND_NICE} -w 2000"
+pidfile="${ANZUCOIND_PIDFILE}"
 
 # The retry schedule to use when stopping the daemon. Could be either
 # a timeout in seconds or multiple signal/timeout pairs (like
 # "SIGKILL/180 SIGTERM/300")
-retry="${BITCOIND_SIGTERM_TIMEOUT}"
+retry="${ANZUCOIND_SIGTERM_TIMEOUT}"
 
 depend() {
 	need localmount net
@@ -50,29 +50,29 @@ start_pre() {
 	checkpath \
 	-d \
 	--mode 0750 \
-	--owner "${BITCOIND_USER}:${BITCOIND_GROUP}" \
-	"${BITCOIND_DATADIR}"
+	--owner "${ANZUCOIND_USER}:${ANZUCOIND_GROUP}" \
+	"${ANZUCOIND_DATADIR}"
 
 	checkpath \
 	-d \
 	--mode 0755 \
-	--owner "${BITCOIND_USER}:${BITCOIND_GROUP}" \
-	"${BITCOIND_PIDDIR}"
+	--owner "${ANZUCOIND_USER}:${ANZUCOIND_GROUP}" \
+	"${ANZUCOIND_PIDDIR}"
 
 	checkpath -f \
-	-o ${BITCOIND_USER}:${BITCOIND_GROUP} \
+	-o ${ANZUCOIND_USER}:${ANZUCOIND_GROUP} \
 	-m 0660 \
-	${BITCOIND_CONFIGFILE}
+	${ANZUCOIND_CONFIGFILE}
 
 	checkconfig || return 1
 }
 
 checkconfig()
 {
-	if ! grep -qs '^rpcpassword=' "${BITCOIND_CONFIGFILE}" ; then
+	if ! grep -qs '^rpcpassword=' "${ANZUCOIND_CONFIGFILE}" ; then
 		eerror ""
 		eerror "ERROR: You must set a secure rpcpassword to run anzucoind."
-		eerror "The setting must appear in ${BITCOIND_CONFIGFILE}"
+		eerror "The setting must appear in ${ANZUCOIND_CONFIGFILE}"
 		eerror ""
 		eerror "This password is security critical to securing wallets "
 		eerror "and must not be the same as the rpcuser setting."

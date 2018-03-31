@@ -3,8 +3,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_VALIDATION_H
-#define BITCOIN_VALIDATION_H
+#ifndef ANZUCOIN_VALIDATION_H
+#define ANZUCOIN_VALIDATION_H
 
 #if defined(HAVE_CONFIG_H)
 #include "config/anzucoin-config.h"
@@ -576,4 +576,4 @@ void DumpMempool();
 /** Load the mempool from disk. */
 bool LoadMempool();
 
-#endif // BITCOIN_VALIDATION_H
+#endif // ANZUCOIN_VALIDATION_H

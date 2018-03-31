@@ -205,10 +205,10 @@ class ComparisonTestFramework(AnzucoinTestFramework):
 
     def add_options(self, parser):
         parser.add_option("--testbinary", dest="testbinary",
-                          default=os.getenv("BITCOIND", "anzucoind"),
+                          default=os.getenv("ANZUCOIND", "anzucoind"),
                           help="anzucoind binary to test")
         parser.add_option("--refbinary", dest="refbinary",
-                          default=os.getenv("BITCOIND", "anzucoind"),
+                          default=os.getenv("ANZUCOIND", "anzucoind"),
                           help="anzucoind binary to use for reference nodes (if any)")
 
     def setup_network(self):

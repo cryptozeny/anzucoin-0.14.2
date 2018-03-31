@@ -1,4 +1,4 @@
-TOR SUPPORT IN BITCOIN
+TOR SUPPORT IN ANZUCOIN
 ======================
 
 It is possible to run Anzucoin as a Tor hidden service, and connect to such services.

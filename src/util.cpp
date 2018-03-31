@@ -103,8 +103,8 @@ namespace boost {
 
 using namespace std;
 
-const char * const BITCOIN_CONF_FILENAME = "anzucoin.conf";
-const char * const BITCOIN_PID_FILENAME = "anzucoind.pid";
+const char * const ANZUCOIN_CONF_FILENAME = "anzucoin.conf";
+const char * const ANZUCOIN_PID_FILENAME = "anzucoind.pid";
 
 CCriticalSection cs_args;
 map<string, string> mapArgs;
@@ -586,7 +586,7 @@ void ReadConfigFile(const std::string& confPath)
 #ifndef WIN32
 boost::filesystem::path GetPidFile()
 {
-    boost::filesystem::path pathPidFile(GetArg("-pid", BITCOIN_PID_FILENAME));
+    boost::filesystem::path pathPidFile(GetArg("-pid", ANZUCOIN_PID_FILENAME));
     if (!pathPidFile.is_complete()) pathPidFile = GetDataDir() / pathPidFile;
     return pathPidFile;
 }

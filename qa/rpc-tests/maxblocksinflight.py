@@ -73,7 +73,7 @@ class TestManager(NodeConnCB):
 class MaxBlocksInFlightTest(AnzucoinTestFramework):
     def add_options(self, parser):
         parser.add_option("--testbinary", dest="testbinary",
-                          default=os.getenv("BITCOIND", "anzucoind"),
+                          default=os.getenv("ANZUCOIND", "anzucoind"),
                           help="Binary to test max block requests behavior")
 
     def __init__(self):
