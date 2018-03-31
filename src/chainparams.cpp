@@ -126,7 +126,7 @@ public:
         vSeeds.push_back(CDNSSeedData("anzucoinstats.com", "seed.anzucoinstats.com", true)); // Christian Decker, supports x1 - xf
         vSeeds.push_back(CDNSSeedData("anzucoin.jonasschnelli.ch", "seed.anzucoin.jonasschnelli.ch", true)); // Jonas Schnelli, only supports x1, x5, x9, and xd
 
-        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,0);
+        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,83);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,5);
         base58Prefixes[SECRET_KEY] =     std::vector<unsigned char>(1,128);
         base58Prefixes[EXT_PUBLIC_KEY] = boost::assign::list_of(0x04)(0x88)(0xB2)(0x1E).convert_to_container<std::vector<unsigned char> >();
