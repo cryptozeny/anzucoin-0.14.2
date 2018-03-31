@@ -1,4 +1,4 @@
-// Copyright (c) 2011-2016 The Bitcoin Core developers
+// Copyright (c) 2011-2016 The Anzucoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -64,7 +64,7 @@
 #include <QUrlQuery>
 #endif
 
-const std::string BitcoinGUI::DEFAULT_UIPLATFORM =
+const std::string AnzucoinGUI::DEFAULT_UIPLATFORM =
 #if defined(Q_OS_MAC)
         "macosx"
 #elif defined(Q_OS_WIN)
@@ -76,9 +76,9 @@ const std::string BitcoinGUI::DEFAULT_UIPLATFORM =
 
 /** Display name for default wallet name. Uses tilde to avoid name
  * collisions in the future with additional wallets */
-const QString BitcoinGUI::DEFAULT_WALLET = "~Default";
+const QString AnzucoinGUI::DEFAULT_WALLET = "~Default";
 
-BitcoinGUI::BitcoinGUI(const PlatformStyle *_platformStyle, const NetworkStyle *networkStyle, QWidget *parent) :
+AnzucoinGUI::AnzucoinGUI(const PlatformStyle *_platformStyle, const NetworkStyle *networkStyle, QWidget *parent) :
     QMainWindow(parent),
     enableWallet(false),
     clientModel(0),
@@ -256,7 +256,7 @@ BitcoinGUI::BitcoinGUI(const PlatformStyle *_platformStyle, const NetworkStyle *
 #endif
 }
 
-BitcoinGUI::~BitcoinGUI()
+AnzucoinGUI::~AnzucoinGUI()
 {
     // Unsubscribe from notifications from core
     unsubscribeFromCoreSignals();
@@ -272,7 +272,7 @@ BitcoinGUI::~BitcoinGUI()
     delete rpcConsole;
 }
 
-void BitcoinGUI::createActions()
+void AnzucoinGUI::createActions()
 {
     QActionGroup *tabGroup = new QActionGroup(this);
 
@@ -284,7 +284,7 @@ void BitcoinGUI::createActions()
     tabGroup->addAction(overviewAction);
 
     sendCoinsAction = new QAction(platformStyle->SingleColorIcon(":/icons/send"), tr("&Send"), this);
-    sendCoinsAction->setStatusTip(tr("Send coins to a Bitcoin address"));
+    sendCoinsAction->setStatusTip(tr("Send coins to a Anzucoin address"));
     sendCoinsAction->setToolTip(sendCoinsAction->statusTip());
     sendCoinsAction->setCheckable(true);
     sendCoinsAction->setShortcut(QKeySequence(Qt::ALT + Qt::Key_2));
@@ -355,9 +355,9 @@ void BitcoinGUI::createActions()
     changePassphraseAction = new QAction(platformStyle->TextColorIcon(":/icons/key"), tr("&Change Passphrase..."), this);
     changePassphraseAction->setStatusTip(tr("Change the passphrase used for wallet encryption"));
     signMessageAction = new QAction(platformStyle->TextColorIcon(":/icons/edit"), tr("Sign &message..."), this);
-    signMessageAction->setStatusTip(tr("Sign messages with your Bitcoin addresses to prove you own them"));
+    signMessageAction->setStatusTip(tr("Sign messages with your Anzucoin addresses to prove you own them"));
     verifyMessageAction = new QAction(platformStyle->TextColorIcon(":/icons/verify"), tr("&Verify message..."), this);
-    verifyMessageAction->setStatusTip(tr("Verify messages to ensure they were signed with specified Bitcoin addresses"));
+    verifyMessageAction->setStatusTip(tr("Verify messages to ensure they were signed with specified Anzucoin addresses"));
 
     openRPCConsoleAction = new QAction(platformStyle->TextColorIcon(":/icons/debugwindow"), tr("&Debug window"), this);
     openRPCConsoleAction->setStatusTip(tr("Open debugging and diagnostic console"));
@@ -374,7 +374,7 @@ void BitcoinGUI::createActions()
 
     showHelpMessageAction = new QAction(platformStyle->TextColorIcon(":/icons/info"), tr("&Command-line options"), this);
     showHelpMessageAction->setMenuRole(QAction::NoRole);
-    showHelpMessageAction->setStatusTip(tr("Show the %1 help message to get a list with possible Bitcoin command-line options").arg(tr(PACKAGE_NAME)));
+    showHelpMessageAction->setStatusTip(tr("Show the %1 help message to get a list with possible Anzucoin command-line options").arg(tr(PACKAGE_NAME)));
 
     connect(quitAction, SIGNAL(triggered()), qApp, SLOT(quit()));
     connect(aboutAction, SIGNAL(triggered()), this, SLOT(aboutClicked()));
@@ -404,7 +404,7 @@ void BitcoinGUI::createActions()
     new QShortcut(QKeySequence(Qt::CTRL + Qt::SHIFT + Qt::Key_D), this, SLOT(showDebugWindow()));
 }
 
-void BitcoinGUI::createMenuBar()
+void AnzucoinGUI::createMenuBar()
 {
 #ifdef Q_OS_MAC
     // Create a decoupled menu bar on Mac which stays even if the window is closed
@@ -449,7 +449,7 @@ void BitcoinGUI::createMenuBar()
     help->addAction(aboutQtAction);
 }
 
-void BitcoinGUI::createToolBars()
+void AnzucoinGUI::createToolBars()
 {
     if(walletFrame)
     {
@@ -464,7 +464,7 @@ void BitcoinGUI::createToolBars()
     }
 }
 
-void BitcoinGUI::setClientModel(ClientModel *_clientModel)
+void AnzucoinGUI::setClientModel(ClientModel *_clientModel)
 {
     this->clientModel = _clientModel;
     if(_clientModel)
@@ -527,7 +527,7 @@ void BitcoinGUI::setClientModel(ClientModel *_clientModel)
 }
 
 #ifdef ENABLE_WALLET
-bool BitcoinGUI::addWallet(const QString& name, WalletModel *walletModel)
+bool AnzucoinGUI::addWallet(const QString& name, WalletModel *walletModel)
 {
     if(!walletFrame)
         return false;
@@ -535,14 +535,14 @@ bool BitcoinGUI::addWallet(const QString& name, WalletModel *walletModel)
     return walletFrame->addWallet(name, walletModel);
 }
 
-bool BitcoinGUI::setCurrentWallet(const QString& name)
+bool AnzucoinGUI::setCurrentWallet(const QString& name)
 {
     if(!walletFrame)
         return false;
     return walletFrame->setCurrentWallet(name);
 }
 
-void BitcoinGUI::removeAllWallets()
+void AnzucoinGUI::removeAllWallets()
 {
     if(!walletFrame)
         return;
@@ -551,7 +551,7 @@ void BitcoinGUI::removeAllWallets()
 }
 #endif // ENABLE_WALLET
 
-void BitcoinGUI::setWalletActionsEnabled(bool enabled)
+void AnzucoinGUI::setWalletActionsEnabled(bool enabled)
 {
     overviewAction->setEnabled(enabled);
     sendCoinsAction->setEnabled(enabled);
@@ -569,7 +569,7 @@ void BitcoinGUI::setWalletActionsEnabled(bool enabled)
     openAction->setEnabled(enabled);
 }
 
-void BitcoinGUI::createTrayIcon(const NetworkStyle *networkStyle)
+void AnzucoinGUI::createTrayIcon(const NetworkStyle *networkStyle)
 {
 #ifndef Q_OS_MAC
     trayIcon = new QSystemTrayIcon(this);
@@ -582,7 +582,7 @@ void BitcoinGUI::createTrayIcon(const NetworkStyle *networkStyle)
     notificator = new Notificator(QApplication::applicationName(), trayIcon, this);
 }
 
-void BitcoinGUI::createTrayIconMenu()
+void AnzucoinGUI::createTrayIconMenu()
 {
 #ifndef Q_OS_MAC
     // return if trayIcon is unset (only on non-Mac OSes)
@@ -619,7 +619,7 @@ void BitcoinGUI::createTrayIconMenu()
 }
 
 #ifndef Q_OS_MAC
-void BitcoinGUI::trayIconActivated(QSystemTrayIcon::ActivationReason reason)
+void AnzucoinGUI::trayIconActivated(QSystemTrayIcon::ActivationReason reason)
 {
     if(reason == QSystemTrayIcon::Trigger)
     {
@@ -629,7 +629,7 @@ void BitcoinGUI::trayIconActivated(QSystemTrayIcon::ActivationReason reason)
 }
 #endif
 
-void BitcoinGUI::optionsClicked()
+void AnzucoinGUI::optionsClicked()
 {
     if(!clientModel || !clientModel->getOptionsModel())
         return;
@@ -639,7 +639,7 @@ void BitcoinGUI::optionsClicked()
     dlg.exec();
 }
 
-void BitcoinGUI::aboutClicked()
+void AnzucoinGUI::aboutClicked()
 {
     if(!clientModel)
         return;
@@ -648,7 +648,7 @@ void BitcoinGUI::aboutClicked()
     dlg.exec();
 }
 
-void BitcoinGUI::showDebugWindow()
+void AnzucoinGUI::showDebugWindow()
 {
     rpcConsole->showNormal();
     rpcConsole->show();
@@ -656,19 +656,19 @@ void BitcoinGUI::showDebugWindow()
     rpcConsole->activateWindow();
 }
 
-void BitcoinGUI::showDebugWindowActivateConsole()
+void AnzucoinGUI::showDebugWindowActivateConsole()
 {
     rpcConsole->setTabFocus(RPCConsole::TAB_CONSOLE);
     showDebugWindow();
 }
 
-void BitcoinGUI::showHelpMessageClicked()
+void AnzucoinGUI::showHelpMessageClicked()
 {
     helpMessageDialog->show();
 }
 
 #ifdef ENABLE_WALLET
-void BitcoinGUI::openClicked()
+void AnzucoinGUI::openClicked()
 {
     OpenURIDialog dlg(this);
     if(dlg.exec())
@@ -677,42 +677,42 @@ void BitcoinGUI::openClicked()
     }
 }
 
-void BitcoinGUI::gotoOverviewPage()
+void AnzucoinGUI::gotoOverviewPage()
 {
     overviewAction->setChecked(true);
     if (walletFrame) walletFrame->gotoOverviewPage();
 }
 
-void BitcoinGUI::gotoHistoryPage()
+void AnzucoinGUI::gotoHistoryPage()
 {
     historyAction->setChecked(true);
     if (walletFrame) walletFrame->gotoHistoryPage();
 }
 
-void BitcoinGUI::gotoReceiveCoinsPage()
+void AnzucoinGUI::gotoReceiveCoinsPage()
 {
     receiveCoinsAction->setChecked(true);
     if (walletFrame) walletFrame->gotoReceiveCoinsPage();
 }
 
-void BitcoinGUI::gotoSendCoinsPage(QString addr)
+void AnzucoinGUI::gotoSendCoinsPage(QString addr)
 {
     sendCoinsAction->setChecked(true);
     if (walletFrame) walletFrame->gotoSendCoinsPage(addr);
 }
 
-void BitcoinGUI::gotoSignMessageTab(QString addr)
+void AnzucoinGUI::gotoSignMessageTab(QString addr)
 {
     if (walletFrame) walletFrame->gotoSignMessageTab(addr);
 }
 
-void BitcoinGUI::gotoVerifyMessageTab(QString addr)
+void AnzucoinGUI::gotoVerifyMessageTab(QString addr)
 {
     if (walletFrame) walletFrame->gotoVerifyMessageTab(addr);
 }
 #endif // ENABLE_WALLET
 
-void BitcoinGUI::updateNetworkState()
+void AnzucoinGUI::updateNetworkState()
 {
     int count = clientModel->getNumConnections();
     QString icon;
@@ -728,7 +728,7 @@ void BitcoinGUI::updateNetworkState()
     QString tooltip;
 
     if (clientModel->getNetworkActive()) {
-        tooltip = tr("%n active connection(s) to Bitcoin network", "", count) + QString(".<br>") + tr("Click to disable network activity.");
+        tooltip = tr("%n active connection(s) to Anzucoin network", "", count) + QString(".<br>") + tr("Click to disable network activity.");
     } else {
         tooltip = tr("Network activity disabled.") + QString("<br>") + tr("Click to enable network activity again.");
         icon = ":/icons/network_disabled";
@@ -741,17 +741,17 @@ void BitcoinGUI::updateNetworkState()
     connectionsControl->setPixmap(platformStyle->SingleColorIcon(icon).pixmap(STATUSBAR_ICONSIZE,STATUSBAR_ICONSIZE));
 }
 
-void BitcoinGUI::setNumConnections(int count)
+void AnzucoinGUI::setNumConnections(int count)
 {
     updateNetworkState();
 }
 
-void BitcoinGUI::setNetworkActive(bool networkActive)
+void AnzucoinGUI::setNetworkActive(bool networkActive)
 {
     updateNetworkState();
 }
 
-void BitcoinGUI::updateHeadersSyncProgressLabel()
+void AnzucoinGUI::updateHeadersSyncProgressLabel()
 {
     int64_t headersTipTime = clientModel->getHeaderTipTime();
     int headersTipHeight = clientModel->getHeaderTipHeight();
@@ -760,7 +760,7 @@ void BitcoinGUI::updateHeadersSyncProgressLabel()
         progressBarLabel->setText(tr("Syncing Headers (%1%)...").arg(QString::number(100.0 / (headersTipHeight+estHeadersLeft)*headersTipHeight, 'f', 1)));
 }
 
-void BitcoinGUI::setNumBlocks(int count, const QDateTime& blockDate, double nVerificationProgress, bool header)
+void AnzucoinGUI::setNumBlocks(int count, const QDateTime& blockDate, double nVerificationProgress, bool header)
 {
     if (modalOverlay)
     {
@@ -870,9 +870,9 @@ void BitcoinGUI::setNumBlocks(int count, const QDateTime& blockDate, double nVer
     progressBar->setToolTip(tooltip);
 }
 
-void BitcoinGUI::message(const QString &title, const QString &message, unsigned int style, bool *ret)
+void AnzucoinGUI::message(const QString &title, const QString &message, unsigned int style, bool *ret)
 {
-    QString strTitle = tr("Bitcoin"); // default title
+    QString strTitle = tr("Anzucoin"); // default title
     // Default to information icon
     int nMBoxIcon = QMessageBox::Information;
     int nNotifyIcon = Notificator::Information;
@@ -898,7 +898,7 @@ void BitcoinGUI::message(const QString &title, const QString &message, unsigned 
             break;
         }
     }
-    // Append title to "Bitcoin - "
+    // Append title to "Anzucoin - "
     if (!msgType.isEmpty())
         strTitle += " - " + msgType;
 
@@ -929,7 +929,7 @@ void BitcoinGUI::message(const QString &title, const QString &message, unsigned 
         notificator->notify((Notificator::Class)nNotifyIcon, strTitle, message);
 }
 
-void BitcoinGUI::changeEvent(QEvent *e)
+void AnzucoinGUI::changeEvent(QEvent *e)
 {
     QMainWindow::changeEvent(e);
 #ifndef Q_OS_MAC // Ignored on Mac
@@ -948,7 +948,7 @@ void BitcoinGUI::changeEvent(QEvent *e)
 #endif
 }
 
-void BitcoinGUI::closeEvent(QCloseEvent *event)
+void AnzucoinGUI::closeEvent(QCloseEvent *event)
 {
 #ifndef Q_OS_MAC // Ignored on Mac
     if(clientModel && clientModel->getOptionsModel())
@@ -971,7 +971,7 @@ void BitcoinGUI::closeEvent(QCloseEvent *event)
 #endif
 }
 
-void BitcoinGUI::showEvent(QShowEvent *event)
+void AnzucoinGUI::showEvent(QShowEvent *event)
 {
     // enable the debug window when the main window shows up
     openRPCConsoleAction->setEnabled(true);
@@ -980,11 +980,11 @@ void BitcoinGUI::showEvent(QShowEvent *event)
 }
 
 #ifdef ENABLE_WALLET
-void BitcoinGUI::incomingTransaction(const QString& date, int unit, const CAmount& amount, const QString& type, const QString& address, const QString& label)
+void AnzucoinGUI::incomingTransaction(const QString& date, int unit, const CAmount& amount, const QString& type, const QString& address, const QString& label)
 {
     // On new transaction, make an info balloon
     QString msg = tr("Date: %1\n").arg(date) +
-                  tr("Amount: %1\n").arg(BitcoinUnits::formatWithUnit(unit, amount, true)) +
+                  tr("Amount: %1\n").arg(AnzucoinUnits::formatWithUnit(unit, amount, true)) +
                   tr("Type: %1\n").arg(type);
     if (!label.isEmpty())
         msg += tr("Label: %1\n").arg(label);
@@ -995,14 +995,14 @@ void BitcoinGUI::incomingTransaction(const QString& date, int unit, const CAmoun
 }
 #endif // ENABLE_WALLET
 
-void BitcoinGUI::dragEnterEvent(QDragEnterEvent *event)
+void AnzucoinGUI::dragEnterEvent(QDragEnterEvent *event)
 {
     // Accept only URIs
     if(event->mimeData()->hasUrls())
         event->acceptProposedAction();
 }
 
-void BitcoinGUI::dropEvent(QDropEvent *event)
+void AnzucoinGUI::dropEvent(QDropEvent *event)
 {
     if(event->mimeData()->hasUrls())
     {
@@ -1014,7 +1014,7 @@ void BitcoinGUI::dropEvent(QDropEvent *event)
     event->acceptProposedAction();
 }
 
-bool BitcoinGUI::eventFilter(QObject *object, QEvent *event)
+bool AnzucoinGUI::eventFilter(QObject *object, QEvent *event)
 {
     // Catch status tip events
     if (event->type() == QEvent::StatusTip)
@@ -1027,7 +1027,7 @@ bool BitcoinGUI::eventFilter(QObject *object, QEvent *event)
 }
 
 #ifdef ENABLE_WALLET
-bool BitcoinGUI::handlePaymentRequest(const SendCoinsRecipient& recipient)
+bool AnzucoinGUI::handlePaymentRequest(const SendCoinsRecipient& recipient)
 {
     // URI has to be valid
     if (walletFrame && walletFrame->handlePaymentRequest(recipient))
@@ -1039,7 +1039,7 @@ bool BitcoinGUI::handlePaymentRequest(const SendCoinsRecipient& recipient)
     return false;
 }
 
-void BitcoinGUI::setHDStatus(int hdEnabled)
+void AnzucoinGUI::setHDStatus(int hdEnabled)
 {
     labelWalletHDStatusIcon->setPixmap(platformStyle->SingleColorIcon(hdEnabled ? ":/icons/hd_enabled" : ":/icons/hd_disabled").pixmap(STATUSBAR_ICONSIZE,STATUSBAR_ICONSIZE));
     labelWalletHDStatusIcon->setToolTip(hdEnabled ? tr("HD key generation is <b>enabled</b>") : tr("HD key generation is <b>disabled</b>"));
@@ -1048,7 +1048,7 @@ void BitcoinGUI::setHDStatus(int hdEnabled)
     labelWalletHDStatusIcon->setEnabled(hdEnabled);
 }
 
-void BitcoinGUI::setEncryptionStatus(int status)
+void AnzucoinGUI::setEncryptionStatus(int status)
 {
     switch(status)
     {
@@ -1078,7 +1078,7 @@ void BitcoinGUI::setEncryptionStatus(int status)
 }
 #endif // ENABLE_WALLET
 
-void BitcoinGUI::showNormalIfMinimized(bool fToggleHidden)
+void AnzucoinGUI::showNormalIfMinimized(bool fToggleHidden)
 {
     if(!clientModel)
         return;
@@ -1103,12 +1103,12 @@ void BitcoinGUI::showNormalIfMinimized(bool fToggleHidden)
         hide();
 }
 
-void BitcoinGUI::toggleHidden()
+void AnzucoinGUI::toggleHidden()
 {
     showNormalIfMinimized(true);
 }
 
-void BitcoinGUI::detectShutdown()
+void AnzucoinGUI::detectShutdown()
 {
     if (ShutdownRequested())
     {
@@ -1118,7 +1118,7 @@ void BitcoinGUI::detectShutdown()
     }
 }
 
-void BitcoinGUI::showProgress(const QString &title, int nProgress)
+void AnzucoinGUI::showProgress(const QString &title, int nProgress)
 {
     if (nProgress == 0)
     {
@@ -1141,7 +1141,7 @@ void BitcoinGUI::showProgress(const QString &title, int nProgress)
         progressDialog->setValue(nProgress);
 }
 
-void BitcoinGUI::setTrayIconVisible(bool fHideTrayIcon)
+void AnzucoinGUI::setTrayIconVisible(bool fHideTrayIcon)
 {
     if (trayIcon)
     {
@@ -1149,13 +1149,13 @@ void BitcoinGUI::setTrayIconVisible(bool fHideTrayIcon)
     }
 }
 
-void BitcoinGUI::showModalOverlay()
+void AnzucoinGUI::showModalOverlay()
 {
     if (modalOverlay && (progressBar->isVisible() || modalOverlay->isLayerVisible()))
         modalOverlay->toggleVisibility();
 }
 
-static bool ThreadSafeMessageBox(BitcoinGUI *gui, const std::string& message, const std::string& caption, unsigned int style)
+static bool ThreadSafeMessageBox(AnzucoinGUI *gui, const std::string& message, const std::string& caption, unsigned int style)
 {
     bool modal = (style & CClientUIInterface::MODAL);
     // The SECURE flag has no effect in the Qt GUI.
@@ -1172,21 +1172,21 @@ static bool ThreadSafeMessageBox(BitcoinGUI *gui, const std::string& message, co
     return ret;
 }
 
-void BitcoinGUI::subscribeToCoreSignals()
+void AnzucoinGUI::subscribeToCoreSignals()
 {
     // Connect signals to client
     uiInterface.ThreadSafeMessageBox.connect(boost::bind(ThreadSafeMessageBox, this, _1, _2, _3));
     uiInterface.ThreadSafeQuestion.connect(boost::bind(ThreadSafeMessageBox, this, _1, _3, _4));
 }
 
-void BitcoinGUI::unsubscribeFromCoreSignals()
+void AnzucoinGUI::unsubscribeFromCoreSignals()
 {
     // Disconnect signals from client
     uiInterface.ThreadSafeMessageBox.disconnect(boost::bind(ThreadSafeMessageBox, this, _1, _2, _3));
     uiInterface.ThreadSafeQuestion.disconnect(boost::bind(ThreadSafeMessageBox, this, _1, _3, _4));
 }
 
-void BitcoinGUI::toggleNetworkActive()
+void AnzucoinGUI::toggleNetworkActive()
 {
     if (clientModel) {
         clientModel->setNetworkActive(!clientModel->getNetworkActive());
@@ -1199,12 +1199,12 @@ UnitDisplayStatusBarControl::UnitDisplayStatusBarControl(const PlatformStyle *pl
 {
     createContextMenu();
     setToolTip(tr("Unit to show amounts in. Click to select another unit."));
-    QList<BitcoinUnits::Unit> units = BitcoinUnits::availableUnits();
+    QList<AnzucoinUnits::Unit> units = AnzucoinUnits::availableUnits();
     int max_width = 0;
     const QFontMetrics fm(font());
-    Q_FOREACH (const BitcoinUnits::Unit unit, units)
+    Q_FOREACH (const AnzucoinUnits::Unit unit, units)
     {
-        max_width = qMax(max_width, fm.width(BitcoinUnits::name(unit)));
+        max_width = qMax(max_width, fm.width(AnzucoinUnits::name(unit)));
     }
     setMinimumSize(max_width, 0);
     setAlignment(Qt::AlignRight | Qt::AlignVCenter);
@@ -1221,9 +1221,9 @@ void UnitDisplayStatusBarControl::mousePressEvent(QMouseEvent *event)
 void UnitDisplayStatusBarControl::createContextMenu()
 {
     menu = new QMenu(this);
-    Q_FOREACH(BitcoinUnits::Unit u, BitcoinUnits::availableUnits())
+    Q_FOREACH(AnzucoinUnits::Unit u, AnzucoinUnits::availableUnits())
     {
-        QAction *menuAction = new QAction(QString(BitcoinUnits::name(u)), this);
+        QAction *menuAction = new QAction(QString(AnzucoinUnits::name(u)), this);
         menuAction->setData(QVariant(u));
         menu->addAction(menuAction);
     }
@@ -1248,7 +1248,7 @@ void UnitDisplayStatusBarControl::setOptionsModel(OptionsModel *_optionsModel)
 /** When Display Units are changed on OptionsModel it will refresh the display text of the control on the status bar */
 void UnitDisplayStatusBarControl::updateDisplayUnit(int newUnits)
 {
-    setText(BitcoinUnits::name(newUnits));
+    setText(AnzucoinUnits::name(newUnits));
 }
 
 /** Shows context menu with Display Unit options by the mouse coordinates */

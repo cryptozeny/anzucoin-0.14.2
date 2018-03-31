@@ -1,4 +1,4 @@
-// Copyright (c) 2011-2015 The Bitcoin Core developers
+// Copyright (c) 2011-2015 The Anzucoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -24,7 +24,7 @@ class AmountSpinBox: public QAbstractSpinBox
 public:
     explicit AmountSpinBox(QWidget *parent):
         QAbstractSpinBox(parent),
-        currentUnit(BitcoinUnits::BTC),
+        currentUnit(AnzucoinUnits::BTC),
         singleStep(100000) // satoshis
     {
         setAlignment(Qt::AlignRight);
@@ -48,7 +48,7 @@ public:
         CAmount val = parse(input, &valid);
         if(valid)
         {
-            input = BitcoinUnits::format(currentUnit, val, false, BitcoinUnits::separatorAlways);
+            input = AnzucoinUnits::format(currentUnit, val, false, AnzucoinUnits::separatorAlways);
             lineEdit()->setText(input);
         }
     }
@@ -60,7 +60,7 @@ public:
 
     void setValue(const CAmount& value)
     {
-        lineEdit()->setText(BitcoinUnits::format(currentUnit, value, false, BitcoinUnits::separatorAlways));
+        lineEdit()->setText(AnzucoinUnits::format(currentUnit, value, false, AnzucoinUnits::separatorAlways));
         Q_EMIT valueChanged();
     }
 
@@ -69,7 +69,7 @@ public:
         bool valid = false;
         CAmount val = value(&valid);
         val = val + steps * singleStep;
-        val = qMin(qMax(val, CAmount(0)), BitcoinUnits::maxMoney());
+        val = qMin(qMax(val, CAmount(0)), AnzucoinUnits::maxMoney());
         setValue(val);
     }
 
@@ -99,7 +99,7 @@ public:
 
             const QFontMetrics fm(fontMetrics());
             int h = lineEdit()->minimumSizeHint().height();
-            int w = fm.width(BitcoinUnits::format(BitcoinUnits::BTC, BitcoinUnits::maxMoney(), false, BitcoinUnits::separatorAlways));
+            int w = fm.width(AnzucoinUnits::format(AnzucoinUnits::BTC, AnzucoinUnits::maxMoney(), false, AnzucoinUnits::separatorAlways));
             w += 2; // cursor blinking space
 
             QStyleOptionSpinBox opt;
@@ -137,10 +137,10 @@ private:
     CAmount parse(const QString &text, bool *valid_out=0) const
     {
         CAmount val = 0;
-        bool valid = BitcoinUnits::parse(currentUnit, text, &val);
+        bool valid = AnzucoinUnits::parse(currentUnit, text, &val);
         if(valid)
         {
-            if(val < 0 || val > BitcoinUnits::maxMoney())
+            if(val < 0 || val > AnzucoinUnits::maxMoney())
                 valid = false;
         }
         if(valid_out)
@@ -178,7 +178,7 @@ protected:
         {
             if(val > 0)
                 rv |= StepDownEnabled;
-            if(val < BitcoinUnits::maxMoney())
+            if(val < AnzucoinUnits::maxMoney())
                 rv |= StepUpEnabled;
         }
         return rv;
@@ -190,7 +190,7 @@ Q_SIGNALS:
 
 #include "anzucoinamountfield.moc"
 
-BitcoinAmountField::BitcoinAmountField(QWidget *parent) :
+AnzucoinAmountField::AnzucoinAmountField(QWidget *parent) :
     QWidget(parent),
     amount(0)
 {
@@ -202,7 +202,7 @@ BitcoinAmountField::BitcoinAmountField(QWidget *parent) :
     QHBoxLayout *layout = new QHBoxLayout(this);
     layout->addWidget(amount);
     unit = new QValueComboBox(this);
-    unit->setModel(new BitcoinUnits(this));
+    unit->setModel(new AnzucoinUnits(this));
     layout->addWidget(unit);
     layout->addStretch(1);
     layout->setContentsMargins(0,0,0,0);
@@ -220,19 +220,19 @@ BitcoinAmountField::BitcoinAmountField(QWidget *parent) :
     unitChanged(unit->currentIndex());
 }
 
-void BitcoinAmountField::clear()
+void AnzucoinAmountField::clear()
 {
     amount->clear();
     unit->setCurrentIndex(0);
 }
 
-void BitcoinAmountField::setEnabled(bool fEnabled)
+void AnzucoinAmountField::setEnabled(bool fEnabled)
 {
     amount->setEnabled(fEnabled);
     unit->setEnabled(fEnabled);
 }
 
-bool BitcoinAmountField::validate()
+bool AnzucoinAmountField::validate()
 {
     bool valid = false;
     value(&valid);
@@ -240,7 +240,7 @@ bool BitcoinAmountField::validate()
     return valid;
 }
 
-void BitcoinAmountField::setValid(bool valid)
+void AnzucoinAmountField::setValid(bool valid)
 {
     if (valid)
         amount->setStyleSheet("");
@@ -248,7 +248,7 @@ void BitcoinAmountField::setValid(bool valid)
         amount->setStyleSheet(STYLE_INVALID);
 }
 
-bool BitcoinAmountField::eventFilter(QObject *object, QEvent *event)
+bool AnzucoinAmountField::eventFilter(QObject *object, QEvent *event)
 {
     if (event->type() == QEvent::FocusIn)
     {
@@ -258,45 +258,45 @@ bool BitcoinAmountField::eventFilter(QObject *object, QEvent *event)
     return QWidget::eventFilter(object, event);
 }
 
-QWidget *BitcoinAmountField::setupTabChain(QWidget *prev)
+QWidget *AnzucoinAmountField::setupTabChain(QWidget *prev)
 {
     QWidget::setTabOrder(prev, amount);
     QWidget::setTabOrder(amount, unit);
     return unit;
 }
 
-CAmount BitcoinAmountField::value(bool *valid_out) const
+CAmount AnzucoinAmountField::value(bool *valid_out) const
 {
     return amount->value(valid_out);
 }
 
-void BitcoinAmountField::setValue(const CAmount& value)
+void AnzucoinAmountField::setValue(const CAmount& value)
 {
     amount->setValue(value);
 }
 
-void BitcoinAmountField::setReadOnly(bool fReadOnly)
+void AnzucoinAmountField::setReadOnly(bool fReadOnly)
 {
     amount->setReadOnly(fReadOnly);
 }
 
-void BitcoinAmountField::unitChanged(int idx)
+void AnzucoinAmountField::unitChanged(int idx)
 {
     // Use description tooltip for current unit for the combobox
     unit->setToolTip(unit->itemData(idx, Qt::ToolTipRole).toString());
 
     // Determine new unit ID
-    int newUnit = unit->itemData(idx, BitcoinUnits::UnitRole).toInt();
+    int newUnit = unit->itemData(idx, AnzucoinUnits::UnitRole).toInt();
 
     amount->setDisplayUnit(newUnit);
 }
 
-void BitcoinAmountField::setDisplayUnit(int newUnit)
+void AnzucoinAmountField::setDisplayUnit(int newUnit)
 {
     unit->setValue(newUnit);
 }
 
-void BitcoinAmountField::setSingleStep(const CAmount& step)
+void AnzucoinAmountField::setSingleStep(const CAmount& step)
 {
     amount->setSingleStep(step);
 }

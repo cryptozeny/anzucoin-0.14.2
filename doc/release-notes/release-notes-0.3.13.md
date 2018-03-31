@@ -12,7 +12,7 @@ Gavin Andresen:
 * Clean shutdown on SIGTERM on Linux.
 
 Download:
-http://sourceforge.net/projects/anzucoin/files/Bitcoin/anzucoin-0.3.13/
+http://sourceforge.net/projects/anzucoin/files/Anzucoin/anzucoin-0.3.13/
 
 (Thanks Laszlo for the Mac OSX build!)
 

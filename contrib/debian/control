@@ -31,10 +31,10 @@ Package: anzucoind
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: peer-to-peer network based digital currency - daemon
- Bitcoin is an experimental new digital currency that enables instant
- payments to anyone, anywhere in the world. Bitcoin uses peer-to-peer
+ Anzucoin is an experimental new digital currency that enables instant
+ payments to anyone, anywhere in the world. Anzucoin uses peer-to-peer
  technology to operate with no central authority: managing transactions
- and issuing money are carried out collectively by the network. Bitcoin Core
+ and issuing money are carried out collectively by the network. Anzucoin Core
  is the name of the open source software which enables the use of this currency.
  .
  This package provides the daemon, anzucoind, and the CLI tool
@@ -44,22 +44,22 @@ Package: anzucoin-qt
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: peer-to-peer network based digital currency - Qt GUI
- Bitcoin is an experimental new digital currency that enables instant
- payments to anyone, anywhere in the world. Bitcoin uses peer-to-peer
+ Anzucoin is an experimental new digital currency that enables instant
+ payments to anyone, anywhere in the world. Anzucoin uses peer-to-peer
  technology to operate with no central authority: managing transactions
- and issuing money are carried out collectively by the network. Bitcoin Core
+ and issuing money are carried out collectively by the network. Anzucoin Core
  is the name of the open source software which enables the use of this currency.
  .
- This package provides Bitcoin-Qt, a GUI for Bitcoin based on Qt.
+ This package provides Anzucoin-Qt, a GUI for Anzucoin based on Qt.
 
 Package: anzucoin-tx
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: peer-to-peer digital currency - standalone transaction tool
- Bitcoin is an experimental new digital currency that enables instant
- payments to anyone, anywhere in the world. Bitcoin uses peer-to-peer
+ Anzucoin is an experimental new digital currency that enables instant
+ payments to anyone, anywhere in the world. Anzucoin uses peer-to-peer
  technology to operate with no central authority: managing transactions
- and issuing money are carried out collectively by the network. Bitcoin Core
+ and issuing money are carried out collectively by the network. Anzucoin Core
  is the name of the open source software which enables the use of this currency.
  .
  This package provides anzucoin-tx, a command-line transaction creation

@@ -1,5 +1,5 @@
-Bitcoin version 0.5.1 is now available for download at:
-http://sourceforge.net/projects/anzucoin/files/Bitcoin/anzucoin-0.5.1/
+Anzucoin version 0.5.1 is now available for download at:
+http://sourceforge.net/projects/anzucoin/files/Anzucoin/anzucoin-0.5.1/
 
 This is a bugfix-only release.
 

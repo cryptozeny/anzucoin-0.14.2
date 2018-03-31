@@ -29,16 +29,16 @@
   <string>????</string>
 
   <key>CFBundleExecutable</key>
-  <string>Bitcoin-Qt</string>
+  <string>Anzucoin-Qt</string>
   
   <key>CFBundleName</key>
-  <string>Bitcoin-Qt</string>
+  <string>Anzucoin-Qt</string>
 
   <key>LSHasLocalizedDisplayName</key>
   <true/>
 
   <key>CFBundleIdentifier</key>
-  <string>org.anzucoinfoundation.Bitcoin-Qt</string>
+  <string>org.anzucoinfoundation.Anzucoin-Qt</string>
 
   <key>CFBundleURLTypes</key>
   <array>
@@ -46,7 +46,7 @@
       <key>CFBundleTypeRole</key>
       <string>Editor</string>
       <key>CFBundleURLName</key>
-      <string>org.anzucoin.BitcoinPayment</string>
+      <string>org.anzucoin.AnzucoinPayment</string>
       <key>CFBundleURLSchemes</key>
       <array>
         <string>anzucoin</string>
@@ -60,7 +60,7 @@
       <key>UTTypeIdentifier</key>
       <string>org.anzucoin.paymentrequest</string>
       <key>UTTypeDescription</key>
-      <string>Bitcoin payment request</string>
+      <string>Anzucoin payment request</string>
       <key>UTTypeConformsTo</key>
       <array>
         <string>public.data</string>

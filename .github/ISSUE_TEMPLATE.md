@@ -2,7 +2,7 @@
 
 This issue tracker is only for technical issues related to anzucoin-core.
 
-General anzucoin questions and/or support requests and are best directed to the [Bitcoin StackExchange](https://anzucoin.stackexchange.com).
+General anzucoin questions and/or support requests and are best directed to the [Anzucoin StackExchange](https://anzucoin.stackexchange.com).
 
 For reporting security issues, please read instructions at [https://anzucoincore.org/en/contact/](https://anzucoincore.org/en/contact/).
 

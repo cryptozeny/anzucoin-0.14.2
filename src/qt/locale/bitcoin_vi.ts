@@ -32,7 +32,7 @@
     <name>BanTableModel</name>
     </context>
 <context>
-    <name>BitcoinGUI</name>
+    <name>AnzucoinGUI</name>
     </context>
 <context>
     <name>CoinControlDialog</name>

@@ -1,4 +1,4 @@
-// Copyright (c) 2011-2016 The Bitcoin Core developers
+// Copyright (c) 2011-2016 The Anzucoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -41,17 +41,17 @@
 #define THIN_SP_UTF8 REAL_THIN_SP_UTF8
 #define THIN_SP_HTML HTML_HACK_SP
 
-/** Bitcoin unit definitions. Encapsulates parsing and formatting
+/** Anzucoin unit definitions. Encapsulates parsing and formatting
    and serves as list model for drop-down selection boxes.
 */
-class BitcoinUnits: public QAbstractListModel
+class AnzucoinUnits: public QAbstractListModel
 {
     Q_OBJECT
 
 public:
-    explicit BitcoinUnits(QObject *parent);
+    explicit AnzucoinUnits(QObject *parent);
 
-    /** Bitcoin units.
+    /** Anzucoin units.
       @note Source: https://en.anzucoin.it/wiki/Units . Please add only sensible ones
      */
     enum Unit
@@ -121,8 +121,8 @@ public:
     static CAmount maxMoney();
 
 private:
-    QList<BitcoinUnits::Unit> unitlist;
+    QList<AnzucoinUnits::Unit> unitlist;
 };
-typedef BitcoinUnits::Unit BitcoinUnit;
+typedef AnzucoinUnits::Unit AnzucoinUnit;
 
 #endif // BITCOIN_QT_BITCOINUNITS_H

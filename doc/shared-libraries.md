@@ -3,7 +3,7 @@ Shared Libraries
 
 ## anzucoinconsensus
 
-The purpose of this library is to make the verification functionality that is critical to Bitcoin's consensus available to other applications, e.g. to language bindings.
+The purpose of this library is to make the verification functionality that is critical to Anzucoin's consensus available to other applications, e.g. to language bindings.
 
 ### API
 
@@ -43,7 +43,7 @@ The interface is defined in the C header `anzucoinconsensus.h` located in  `src/
 - `anzucoinconsensus_ERR_AMOUNT_REQUIRED` - Input amount is required if WITNESS is used
 
 ### Example Implementations
-- [NBitcoin](https://github.com/NicolasDorier/NBitcoin/blob/master/NBitcoin/Script.cs#L814) (.NET Bindings)
+- [NAnzucoin](https://github.com/NicolasDorier/NAnzucoin/blob/master/NAnzucoin/Script.cs#L814) (.NET Bindings)
 - [node-libanzucoinconsensus](https://github.com/bitpay/node-libanzucoinconsensus) (Node.js Bindings)
 - [java-libanzucoinconsensus](https://github.com/dexX7/java-libanzucoinconsensus) (Java Bindings)
 - [anzucoinconsensus-php](https://github.com/Bit-Wasp/anzucoinconsensus-php) (PHP Bindings)

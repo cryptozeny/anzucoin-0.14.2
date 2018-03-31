@@ -16,8 +16,8 @@ BEGIN
     BEGIN
         BLOCK "040904E4" // U.S. English - multilingual (hex)
         BEGIN
-            VALUE "CompanyName",        "Bitcoin"
-            VALUE "FileDescription",    "anzucoin-tx (CLI Bitcoin transaction editor utility)"
+            VALUE "CompanyName",        "Anzucoin"
+            VALUE "FileDescription",    "anzucoin-tx (CLI Anzucoin transaction editor utility)"
             VALUE "FileVersion",        VER_FILEVERSION_STR
             VALUE "InternalName",       "anzucoin-tx"
             VALUE "LegalCopyright",     COPYRIGHT_STR

@@ -9,7 +9,7 @@
 #define UNUSED
 #endif
 static const char UNUSED *anzucoin_strings[] = {
-QT_TRANSLATE_NOOP("anzucoin-core", "Bitcoin Core"),
+QT_TRANSLATE_NOOP("anzucoin-core", "Anzucoin Core"),
 QT_TRANSLATE_NOOP("anzucoin-core", "The %s developers"),
 QT_TRANSLATE_NOOP("anzucoin-core", ""
 "(1 = keep tx meta data e.g. account owner and payment request information, 2 "

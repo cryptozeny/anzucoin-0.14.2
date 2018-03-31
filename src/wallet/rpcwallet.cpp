@@ -1,5 +1,5 @@
 // Copyright (c) 2010 Satoshi Nakamoto
-// Copyright (c) 2009-2016 The Bitcoin Core developers
+// Copyright (c) 2009-2016 The Anzucoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -112,7 +112,7 @@ UniValue getnewaddress(const JSONRPCRequest& request)
     if (request.fHelp || request.params.size() > 1)
         throw runtime_error(
             "getnewaddress ( \"account\" )\n"
-            "\nReturns a new Bitcoin address for receiving payments.\n"
+            "\nReturns a new Anzucoin address for receiving payments.\n"
             "If 'account' is specified (DEPRECATED), it is added to the address book \n"
             "so payments received with the address will be credited to 'account'.\n"
             "\nArguments:\n"
@@ -142,18 +142,18 @@ UniValue getnewaddress(const JSONRPCRequest& request)
 
     pwalletMain->SetAddressBook(keyID, strAccount, "receive");
 
-    return CBitcoinAddress(keyID).ToString();
+    return CAnzucoinAddress(keyID).ToString();
 }
 
 
-CBitcoinAddress GetAccountAddress(string strAccount, bool bForceNew=false)
+CAnzucoinAddress GetAccountAddress(string strAccount, bool bForceNew=false)
 {
     CPubKey pubKey;
     if (!pwalletMain->GetAccountPubkey(pubKey, strAccount, bForceNew)) {
         throw JSONRPCError(RPC_WALLET_KEYPOOL_RAN_OUT, "Error: Keypool ran out, please call keypoolrefill first");
     }
 
-    return CBitcoinAddress(pubKey.GetID());
+    return CAnzucoinAddress(pubKey.GetID());
 }
 
 UniValue getaccountaddress(const JSONRPCRequest& request)
@@ -164,7 +164,7 @@ UniValue getaccountaddress(const JSONRPCRequest& request)
     if (request.fHelp || request.params.size() != 1)
         throw runtime_error(
             "getaccountaddress \"account\"\n"
-            "\nDEPRECATED. Returns the current Bitcoin address for receiving payments to this account.\n"
+            "\nDEPRECATED. Returns the current Anzucoin address for receiving payments to this account.\n"
             "\nArguments:\n"
             "1. \"account\"       (string, required) The account name for the address. It can also be set to the empty string \"\" to represent the default account. The account does not need to exist, it will be created and a new address created  if there is no account by the given name.\n"
             "\nResult:\n"
@@ -196,7 +196,7 @@ UniValue getrawchangeaddress(const JSONRPCRequest& request)
     if (request.fHelp || request.params.size() > 1)
         throw runtime_error(
             "getrawchangeaddress\n"
-            "\nReturns a new Bitcoin address, for receiving change.\n"
+            "\nReturns a new Anzucoin address, for receiving change.\n"
             "This is for use with raw transactions, NOT normal use.\n"
             "\nResult:\n"
             "\"address\"    (string) The address\n"
@@ -219,7 +219,7 @@ UniValue getrawchangeaddress(const JSONRPCRequest& request)
 
     CKeyID keyID = vchPubKey.GetID();
 
-    return CBitcoinAddress(keyID).ToString();
+    return CAnzucoinAddress(keyID).ToString();
 }
 
 
@@ -242,9 +242,9 @@ UniValue setaccount(const JSONRPCRequest& request)
 
     LOCK2(cs_main, pwalletMain->cs_wallet);
 
-    CBitcoinAddress address(request.params[0].get_str());
+    CAnzucoinAddress address(request.params[0].get_str());
     if (!address.IsValid())
-        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid Bitcoin address");
+        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid Anzucoin address");
 
     string strAccount;
     if (request.params.size() > 1)
@@ -289,9 +289,9 @@ UniValue getaccount(const JSONRPCRequest& request)
 
     LOCK2(cs_main, pwalletMain->cs_wallet);
 
-    CBitcoinAddress address(request.params[0].get_str());
+    CAnzucoinAddress address(request.params[0].get_str());
     if (!address.IsValid())
-        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid Bitcoin address");
+        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid Anzucoin address");
 
     string strAccount;
     map<CTxDestination, CAddressBookData>::iterator mi = pwalletMain->mapAddressBook.find(address.Get());
@@ -328,9 +328,9 @@ UniValue getaddressesbyaccount(const JSONRPCRequest& request)
 
     // Find all addresses that have the given account
     UniValue ret(UniValue::VARR);
-    BOOST_FOREACH(const PAIRTYPE(CBitcoinAddress, CAddressBookData)& item, pwalletMain->mapAddressBook)
+    BOOST_FOREACH(const PAIRTYPE(CAnzucoinAddress, CAddressBookData)& item, pwalletMain->mapAddressBook)
     {
-        const CBitcoinAddress& address = item.first;
+        const CAnzucoinAddress& address = item.first;
         const string& strName = item.second.name;
         if (strName == strAccount)
             ret.push_back(address.ToString());
@@ -352,7 +352,7 @@ static void SendMoney(const CTxDestination &address, CAmount nValue, bool fSubtr
     if (pwalletMain->GetBroadcastTransactions() && !g_connman)
         throw JSONRPCError(RPC_CLIENT_P2P_DISABLED, "Error: Peer-to-peer functionality missing or disabled");
 
-    // Parse Bitcoin address
+    // Parse Anzucoin address
     CScript scriptPubKey = GetScriptForDestination(address);
 
     // Create and send the transaction
@@ -406,9 +406,9 @@ UniValue sendtoaddress(const JSONRPCRequest& request)
 
     LOCK2(cs_main, pwalletMain->cs_wallet);
 
-    CBitcoinAddress address(request.params[0].get_str());
+    CAnzucoinAddress address(request.params[0].get_str());
     if (!address.IsValid())
-        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid Bitcoin address");
+        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid Anzucoin address");
 
     // Amount
     CAmount nAmount = AmountFromValue(request.params[1]);
@@ -471,11 +471,11 @@ UniValue listaddressgroupings(const JSONRPCRequest& request)
         BOOST_FOREACH(CTxDestination address, grouping)
         {
             UniValue addressInfo(UniValue::VARR);
-            addressInfo.push_back(CBitcoinAddress(address).ToString());
+            addressInfo.push_back(CAnzucoinAddress(address).ToString());
             addressInfo.push_back(ValueFromAmount(balances[address]));
             {
-                if (pwalletMain->mapAddressBook.find(CBitcoinAddress(address).Get()) != pwalletMain->mapAddressBook.end())
-                    addressInfo.push_back(pwalletMain->mapAddressBook.find(CBitcoinAddress(address).Get())->second.name);
+                if (pwalletMain->mapAddressBook.find(CAnzucoinAddress(address).Get()) != pwalletMain->mapAddressBook.end())
+                    addressInfo.push_back(pwalletMain->mapAddressBook.find(CAnzucoinAddress(address).Get())->second.name);
             }
             jsonGrouping.push_back(addressInfo);
         }
@@ -517,7 +517,7 @@ UniValue signmessage(const JSONRPCRequest& request)
     string strAddress = request.params[0].get_str();
     string strMessage = request.params[1].get_str();
 
-    CBitcoinAddress addr(strAddress);
+    CAnzucoinAddress addr(strAddress);
     if (!addr.IsValid())
         throw JSONRPCError(RPC_TYPE_ERROR, "Invalid address");
 
@@ -567,10 +567,10 @@ UniValue getreceivedbyaddress(const JSONRPCRequest& request)
 
     LOCK2(cs_main, pwalletMain->cs_wallet);
 
-    // Bitcoin address
-    CBitcoinAddress address = CBitcoinAddress(request.params[0].get_str());
+    // Anzucoin address
+    CAnzucoinAddress address = CAnzucoinAddress(request.params[0].get_str());
     if (!address.IsValid())
-        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid Bitcoin address");
+        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid Anzucoin address");
     CScript scriptPubKey = GetScriptForDestination(address.Get());
     if (!IsMine(*pwalletMain, scriptPubKey))
         return ValueFromAmount(0);
@@ -844,9 +844,9 @@ UniValue sendfrom(const JSONRPCRequest& request)
     LOCK2(cs_main, pwalletMain->cs_wallet);
 
     string strAccount = AccountFromValue(request.params[0]);
-    CBitcoinAddress address(request.params[1].get_str());
+    CAnzucoinAddress address(request.params[1].get_str());
     if (!address.IsValid())
-        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid Bitcoin address");
+        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid Anzucoin address");
     CAmount nAmount = AmountFromValue(request.params[2]);
     if (nAmount <= 0)
         throw JSONRPCError(RPC_TYPE_ERROR, "Invalid amount for send");
@@ -935,16 +935,16 @@ UniValue sendmany(const JSONRPCRequest& request)
     if (request.params.size() > 4)
         subtractFeeFromAmount = request.params[4].get_array();
 
-    set<CBitcoinAddress> setAddress;
+    set<CAnzucoinAddress> setAddress;
     vector<CRecipient> vecSend;
 
     CAmount totalAmount = 0;
     vector<string> keys = sendTo.getKeys();
     BOOST_FOREACH(const string& name_, keys)
     {
-        CBitcoinAddress address(name_);
+        CAnzucoinAddress address(name_);
         if (!address.IsValid())
-            throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, string("Invalid Bitcoin address: ")+name_);
+            throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, string("Invalid Anzucoin address: ")+name_);
 
         if (setAddress.count(address))
             throw JSONRPCError(RPC_INVALID_PARAMETER, string("Invalid parameter, duplicated address: ")+name_);
@@ -1003,7 +1003,7 @@ UniValue addmultisigaddress(const JSONRPCRequest& request)
     {
         string msg = "addmultisigaddress nrequired [\"key\",...] ( \"account\" )\n"
             "\nAdd a nrequired-to-sign multisignature address to the wallet.\n"
-            "Each key is a Bitcoin address or hex-encoded public key.\n"
+            "Each key is a Anzucoin address or hex-encoded public key.\n"
             "If 'account' is specified (DEPRECATED), assign address to that account.\n"
 
             "\nArguments:\n"
@@ -1039,7 +1039,7 @@ UniValue addmultisigaddress(const JSONRPCRequest& request)
     pwalletMain->AddCScript(inner);
 
     pwalletMain->SetAddressBook(innerID, strAccount, "send");
-    return CBitcoinAddress(innerID).ToString();
+    return CAnzucoinAddress(innerID).ToString();
 }
 
 class Witnessifier : public boost::static_visitor<bool>
@@ -1115,9 +1115,9 @@ UniValue addwitnessaddress(const JSONRPCRequest& request)
         }
     }
 
-    CBitcoinAddress address(request.params[0].get_str());
+    CAnzucoinAddress address(request.params[0].get_str());
     if (!address.IsValid())
-        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid Bitcoin address");
+        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid Anzucoin address");
 
     Witnessifier w;
     CTxDestination dest = address.Get();
@@ -1128,7 +1128,7 @@ UniValue addwitnessaddress(const JSONRPCRequest& request)
 
     pwalletMain->SetAddressBook(w.result, "", "receive");
 
-    return CBitcoinAddress(w.result).ToString();
+    return CAnzucoinAddress(w.result).ToString();
 }
 
 struct tallyitem
@@ -1163,7 +1163,7 @@ UniValue ListReceived(const UniValue& params, bool fByAccounts)
             filter = filter | ISMINE_WATCH_ONLY;
 
     // Tally
-    map<CBitcoinAddress, tallyitem> mapTally;
+    map<CAnzucoinAddress, tallyitem> mapTally;
     for (map<uint256, CWalletTx>::iterator it = pwalletMain->mapWallet.begin(); it != pwalletMain->mapWallet.end(); ++it)
     {
         const CWalletTx& wtx = (*it).second;
@@ -1197,11 +1197,11 @@ UniValue ListReceived(const UniValue& params, bool fByAccounts)
     // Reply
     UniValue ret(UniValue::VARR);
     map<string, tallyitem> mapAccountTally;
-    BOOST_FOREACH(const PAIRTYPE(CBitcoinAddress, CAddressBookData)& item, pwalletMain->mapAddressBook)
+    BOOST_FOREACH(const PAIRTYPE(CAnzucoinAddress, CAddressBookData)& item, pwalletMain->mapAddressBook)
     {
-        const CBitcoinAddress& address = item.first;
+        const CAnzucoinAddress& address = item.first;
         const string& strAccount = item.second.name;
-        map<CBitcoinAddress, tallyitem>::iterator it = mapTally.find(address);
+        map<CAnzucoinAddress, tallyitem>::iterator it = mapTally.find(address);
         if (it == mapTally.end() && !fIncludeEmpty)
             continue;
 
@@ -1346,7 +1346,7 @@ UniValue listreceivedbyaccount(const JSONRPCRequest& request)
 
 static void MaybePushAddress(UniValue & entry, const CTxDestination &dest)
 {
-    CBitcoinAddress addr;
+    CAnzucoinAddress addr;
     if (addr.Set(dest))
         entry.push_back(Pair("address", addr.ToString()));
 }
@@ -2146,7 +2146,7 @@ UniValue encryptwallet(const JSONRPCRequest& request)
     // slack space in .dat files; that is bad if the old data is
     // unencrypted private keys. So:
     StartShutdown();
-    return "wallet encrypted; Bitcoin server stopping, restart to run with encrypted wallet. The keypool has been flushed and a new HD seed was generated (if you are using HD). You need to make a new backup.";
+    return "wallet encrypted; Anzucoin server stopping, restart to run with encrypted wallet. The keypool has been flushed and a new HD seed was generated (if you are using HD). You need to make a new backup.";
 }
 
 UniValue lockunspent(const JSONRPCRequest& request)
@@ -2446,15 +2446,15 @@ UniValue listunspent(const JSONRPCRequest& request)
         nMaxDepth = request.params[1].get_int();
     }
 
-    set<CBitcoinAddress> setAddress;
+    set<CAnzucoinAddress> setAddress;
     if (request.params.size() > 2 && !request.params[2].isNull()) {
         RPCTypeCheckArgument(request.params[2], UniValue::VARR);
         UniValue inputs = request.params[2].get_array();
         for (unsigned int idx = 0; idx < inputs.size(); idx++) {
             const UniValue& input = inputs[idx];
-            CBitcoinAddress address(input.get_str());
+            CAnzucoinAddress address(input.get_str());
             if (!address.IsValid())
-                throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, string("Invalid Bitcoin address: ")+input.get_str());
+                throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, string("Invalid Anzucoin address: ")+input.get_str());
             if (setAddress.count(address))
                 throw JSONRPCError(RPC_INVALID_PARAMETER, string("Invalid parameter, duplicated address: ")+input.get_str());
            setAddress.insert(address);
@@ -2488,7 +2488,7 @@ UniValue listunspent(const JSONRPCRequest& request)
         entry.push_back(Pair("vout", out.i));
 
         if (fValidAddress) {
-            entry.push_back(Pair("address", CBitcoinAddress(address).ToString()));
+            entry.push_back(Pair("address", CAnzucoinAddress(address).ToString()));
 
             if (pwalletMain->mapAddressBook.count(address))
                 entry.push_back(Pair("account", pwalletMain->mapAddressBook[address].name));
@@ -2600,7 +2600,7 @@ UniValue fundrawtransaction(const JSONRPCRequest& request)
             true, true);
 
         if (options.exists("changeAddress")) {
-            CBitcoinAddress address(options["changeAddress"].get_str());
+            CAnzucoinAddress address(options["changeAddress"].get_str());
 
             if (!address.IsValid())
                 throw JSONRPCError(RPC_INVALID_PARAMETER, "changeAddress must be a valid anzucoin address");

@@ -80,7 +80,7 @@
     <name>BanTableModel</name>
     </context>
 <context>
-    <name>BitcoinGUI</name>
+    <name>AnzucoinGUI</name>
     <message>
         <source>Error</source>
         <translation>نقص</translation>

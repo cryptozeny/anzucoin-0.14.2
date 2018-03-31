@@ -75,7 +75,7 @@ src/qt/test/moc*.cpp
 *.qm
 Makefile
 anzucoin-qt
-Bitcoin-Qt.app
+Anzucoin-Qt.app
 
 # Unit-tests
 Makefile.test

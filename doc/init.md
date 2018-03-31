@@ -68,9 +68,9 @@ can then be controlled by group membership.
 3b) Mac OS X
 
 Binary:              `/usr/local/bin/anzucoind`  
-Configuration file:  `~/Library/Application Support/Bitcoin/anzucoin.conf`  
-Data directory:      `~/Library/Application Support/Bitcoin`
-Lock file:           `~/Library/Application Support/Bitcoin/.lock`
+Configuration file:  `~/Library/Application Support/Anzucoin/anzucoin.conf`  
+Data directory:      `~/Library/Application Support/Anzucoin`
+Lock file:           `~/Library/Application Support/Anzucoin/.lock`
 
 4. Installing Service Configuration
 -----------------------------------

@@ -64,10 +64,10 @@
     <name>BanTableModel</name>
     </context>
 <context>
-    <name>BitcoinGUI</name>
+    <name>AnzucoinGUI</name>
     <message>
-        <source>Bitcoin</source>
-        <translation>Bitcoin Core</translation>
+        <source>Anzucoin</source>
+        <translation>Anzucoin Core</translation>
     </message>
     <message>
         <source>&amp;Command-line options</source>
@@ -236,8 +236,8 @@
 <context>
     <name>anzucoin-core</name>
     <message>
-        <source>Bitcoin Core</source>
-        <translation>Bitcoin Core</translation>
+        <source>Anzucoin Core</source>
+        <translation>Anzucoin Core</translation>
     </message>
     <message>
         <source>Whitelisted peers cannot be DoS banned and their transactions are always relayed, even if they are already in the mempool, useful e.g. for a gateway</source>
