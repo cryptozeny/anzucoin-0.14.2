@@ -1,6 +1,6 @@
 [Protocol]
-exec=bitcoin-qt '%u'
-protocol=bitcoin
+exec=anzucoin-qt '%u'
+protocol=anzucoin
 input=none
 output=none
 helper=true

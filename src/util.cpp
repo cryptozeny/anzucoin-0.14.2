@@ -4,7 +4,7 @@
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #if defined(HAVE_CONFIG_H)
-#include "config/bitcoin-config.h"
+#include "config/anzucoin-config.h"
 #endif
 
 #include "util.h"
@@ -103,8 +103,8 @@ namespace boost {
 
 using namespace std;
 
-const char * const BITCOIN_CONF_FILENAME = "bitcoin.conf";
-const char * const BITCOIN_PID_FILENAME = "bitcoind.pid";
+const char * const BITCOIN_CONF_FILENAME = "anzucoin.conf";
+const char * const BITCOIN_PID_FILENAME = "anzucoind.pid";
 
 CCriticalSection cs_args;
 map<string, string> mapArgs;
@@ -462,7 +462,7 @@ static std::string FormatException(const std::exception* pex, const char* pszThr
     char pszModule[MAX_PATH] = "";
     GetModuleFileNameA(NULL, pszModule, sizeof(pszModule));
 #else
-    const char* pszModule = "bitcoin";
+    const char* pszModule = "anzucoin";
 #endif
     if (pex)
         return strprintf(
@@ -485,7 +485,7 @@ boost::filesystem::path GetDefaultDataDir()
     // Windows < Vista: C:\Documents and Settings\Username\Application Data\Bitcoin
     // Windows >= Vista: C:\Users\Username\AppData\Roaming\Bitcoin
     // Mac: ~/Library/Application Support/Bitcoin
-    // Unix: ~/.bitcoin
+    // Unix: ~/.anzucoin
 #ifdef WIN32
     // Windows
     return GetSpecialFolderPath(CSIDL_APPDATA) / "Bitcoin";
@@ -501,7 +501,7 @@ boost::filesystem::path GetDefaultDataDir()
     return pathRet / "Library/Application Support/Bitcoin";
 #else
     // Unix
-    return pathRet / ".bitcoin";
+    return pathRet / ".anzucoin";
 #endif
 #endif
 }
@@ -561,7 +561,7 @@ void ReadConfigFile(const std::string& confPath)
 {
     boost::filesystem::ifstream streamConfig(GetConfigFile(confPath));
     if (!streamConfig.good())
-        return; // No bitcoin.conf file is OK
+        return; // No anzucoin.conf file is OK
 
     {
         LOCK(cs_args);
@@ -570,7 +570,7 @@ void ReadConfigFile(const std::string& confPath)
 
         for (boost::program_options::detail::config_file_iterator it(streamConfig, setOptions), end; it != end; ++it)
         {
-            // Don't overwrite existing settings so command line settings override bitcoin.conf
+            // Don't overwrite existing settings so command line settings override anzucoin.conf
             string strKey = string("-") + it->string_key;
             string strValue = it->value[0];
             InterpretNegativeSetting(strKey, strValue);

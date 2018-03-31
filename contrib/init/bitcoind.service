@@ -3,13 +3,13 @@ Description=Bitcoin's distributed currency daemon
 After=network.target
 
 [Service]
-User=bitcoin
-Group=bitcoin
+User=anzucoin
+Group=anzucoin
 
 Type=forking
-PIDFile=/var/lib/bitcoind/bitcoind.pid
-ExecStart=/usr/bin/bitcoind -daemon -pid=/var/lib/bitcoind/bitcoind.pid \
--conf=/etc/bitcoin/bitcoin.conf -datadir=/var/lib/bitcoind -disablewallet
+PIDFile=/var/lib/anzucoind/anzucoind.pid
+ExecStart=/usr/bin/anzucoind -daemon -pid=/var/lib/anzucoind/anzucoind.pid \
+-conf=/etc/anzucoin/anzucoin.conf -datadir=/var/lib/anzucoind -disablewallet
 
 Restart=always
 PrivateTmp=true

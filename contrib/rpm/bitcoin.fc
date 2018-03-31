@@ -1,8 +1,8 @@
-/usr/bin/bitcoin-cli		--	gen_context(system_u:object_r:bitcoin_exec_t,s0)
-/usr/sbin/bitcoind		--	gen_context(system_u:object_r:bitcoin_exec_t,s0)
-/usr/lib(64)?/bitcoin/bitcoind		--	gen_context(system_u:object_r:bitcoin_exec_t,s0)
+/usr/bin/anzucoin-cli		--	gen_context(system_u:object_r:anzucoin_exec_t,s0)
+/usr/sbin/anzucoind		--	gen_context(system_u:object_r:anzucoin_exec_t,s0)
+/usr/lib(64)?/anzucoin/anzucoind		--	gen_context(system_u:object_r:anzucoin_exec_t,s0)
 
-/etc/bitcoin(/.*)?		gen_context(system_u:object_r:bitcoin_conf_t,s0)
-/var/lib/bitcoin(/.*)?		gen_context(system_u:object_r:bitcoin_var_lib_t,s0)
+/etc/anzucoin(/.*)?		gen_context(system_u:object_r:anzucoin_conf_t,s0)
+/var/lib/anzucoin(/.*)?		gen_context(system_u:object_r:anzucoin_var_lib_t,s0)
 
-(/var)?/run/bitcoind(/.*)?   gen_context(system_u:object_r:bitcoin_var_run_t,s0)
+(/var)?/run/anzucoind(/.*)?   gen_context(system_u:object_r:anzucoin_var_run_t,s0)

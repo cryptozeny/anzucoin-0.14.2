@@ -770,7 +770,7 @@
     </message>
     </context>
 <context>
-    <name>bitcoin-core</name>
+    <name>anzucoin-core</name>
     <message>
         <source>Options:</source>
         <translation>Opsies:</translation>
