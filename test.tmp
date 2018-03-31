@@ -1,0 +1,1 @@
+sed -i 's/1177776437/1177776437/g' ./src/chainparams.cpp
