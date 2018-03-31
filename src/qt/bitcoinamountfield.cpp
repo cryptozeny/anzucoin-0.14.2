@@ -24,7 +24,7 @@ class AmountSpinBox: public QAbstractSpinBox
 public:
     explicit AmountSpinBox(QWidget *parent):
         QAbstractSpinBox(parent),
-        currentUnit(AnzucoinUnits::BTC),
+        currentUnit(AnzucoinUnits::ANZU),
         singleStep(100000) // satoshis
     {
         setAlignment(Qt::AlignRight);
@@ -99,7 +99,7 @@ public:
 
             const QFontMetrics fm(fontMetrics());
             int h = lineEdit()->minimumSizeHint().height();
-            int w = fm.width(AnzucoinUnits::format(AnzucoinUnits::BTC, AnzucoinUnits::maxMoney(), false, AnzucoinUnits::separatorAlways));
+            int w = fm.width(AnzucoinUnits::format(AnzucoinUnits::ANZU, AnzucoinUnits::maxMoney(), false, AnzucoinUnits::separatorAlways));
             w += 2; // cursor blinking space
 
             QStyleOptionSpinBox opt;

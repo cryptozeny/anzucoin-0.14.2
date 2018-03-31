@@ -17,9 +17,9 @@ AnzucoinUnits::AnzucoinUnits(QObject *parent):
 QList<AnzucoinUnits::Unit> AnzucoinUnits::availableUnits()
 {
     QList<AnzucoinUnits::Unit> unitlist;
-    unitlist.append(BTC);
-    unitlist.append(mBTC);
-    unitlist.append(uBTC);
+    unitlist.append(ANZU);
+    unitlist.append(mANZU);
+    unitlist.append(uANZU);
     return unitlist;
 }
 
@@ -27,9 +27,9 @@ bool AnzucoinUnits::valid(int unit)
 {
     switch(unit)
     {
-    case BTC:
-    case mBTC:
-    case uBTC:
+    case ANZU:
+    case mANZU:
+    case uANZU:
         return true;
     default:
         return false;
@@ -40,9 +40,9 @@ QString AnzucoinUnits::name(int unit)
 {
     switch(unit)
     {
-    case BTC: return QString("BTC");
-    case mBTC: return QString("mBTC");
-    case uBTC: return QString::fromUtf8("μBTC");
+    case ANZU: return QString("ANZU");
+    case mANZU: return QString("mANZU");
+    case uANZU: return QString::fromUtf8("μANZU");
     default: return QString("???");
     }
 }
@@ -51,9 +51,9 @@ QString AnzucoinUnits::description(int unit)
 {
     switch(unit)
     {
-    case BTC: return QString("Anzucoins");
-    case mBTC: return QString("Milli-Anzucoins (1 / 1" THIN_SP_UTF8 "000)");
-    case uBTC: return QString("Micro-Anzucoins (1 / 1" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
+    case ANZU: return QString("Anzucoins");
+    case mANZU: return QString("Milli-Anzucoins (1 / 1" THIN_SP_UTF8 "000)");
+    case uANZU: return QString("Micro-Anzucoins (1 / 1" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
     default: return QString("???");
     }
 }
@@ -62,9 +62,9 @@ qint64 AnzucoinUnits::factor(int unit)
 {
     switch(unit)
     {
-    case BTC:  return 100000000;
-    case mBTC: return 100000;
-    case uBTC: return 100;
+    case ANZU:  return 100000000;
+    case mANZU: return 100000;
+    case uANZU: return 100;
     default:   return 100000000;
     }
 }
@@ -73,9 +73,9 @@ int AnzucoinUnits::decimals(int unit)
 {
     switch(unit)
     {
-    case BTC: return 8;
-    case mBTC: return 5;
-    case uBTC: return 2;
+    case ANZU: return 8;
+    case mANZU: return 5;
+    case uANZU: return 2;
     default: return 0;
     }
 }

@@ -192,7 +192,7 @@ bool parseAnzucoinURI(const QUrl &uri, SendCoinsRecipient *out)
         {
             if(!i->second.isEmpty())
             {
-                if(!AnzucoinUnits::parse(AnzucoinUnits::BTC, i->second, &rv.amount))
+                if(!AnzucoinUnits::parse(AnzucoinUnits::ANZU, i->second, &rv.amount))
                 {
                     return false;
                 }
@@ -231,7 +231,7 @@ QString formatAnzucoinURI(const SendCoinsRecipient &info)
 
     if (info.amount)
     {
-        ret += QString("?amount=%1").arg(AnzucoinUnits::format(AnzucoinUnits::BTC, info.amount, false, AnzucoinUnits::separatorNever));
+        ret += QString("?amount=%1").arg(AnzucoinUnits::format(AnzucoinUnits::ANZU, info.amount, false, AnzucoinUnits::separatorNever));
         paramCount++;
     }
 

@@ -445,10 +445,10 @@ Then when building, override the remote URLs that gbuild would otherwise pull fr
 cd /some/root/path/
 git clone https://github.com/anzucoin-core/anzucoin-detached-sigs.git
 
-BTCPATH=/some/root/path/anzucoin
+ANZUPATH=/some/root/path/anzucoin
 SIGPATH=/some/root/path/anzucoin-detached-sigs
 
-./bin/gbuild --url anzucoin=${BTCPATH},signature=${SIGPATH} ../anzucoin/contrib/gitian-descriptors/gitian-win-signer.yml
+./bin/gbuild --url anzucoin=${ANZUPATH},signature=${SIGPATH} ../anzucoin/contrib/gitian-descriptors/gitian-win-signer.yml
 ```
 
 Signing externally
