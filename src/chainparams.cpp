@@ -222,7 +222,7 @@ public:
         vSeeds.clear();
         // nodes with support for servicebits filtering should be at the top
         vSeeds.push_back(CDNSSeedData("testnetanzucoin.jonasschnelli.ch", "testnet-seed.anzucoin.jonasschnelli.ch", true));
-        vSeeds.push_back(CDNSSeedData("petertodd.org", "seed.tbtc.petertodd.org", true));
+        vSeeds.push_back(CDNSSeedData("petertodd.org", "seed.tANZU.petertodd.org", true));
         vSeeds.push_back(CDNSSeedData("bluematt.me", "testnet-seed.bluematt.me"));
         vSeeds.push_back(CDNSSeedData("anzucoin.schildbach.de", "testnet-seed.anzucoin.schildbach.de"));
 
