@@ -334,9 +334,9 @@ if [ `%{_sbindir}/sestatus |grep -c "disabled"` -eq 0 ]; then
 for selinuxvariant in %{selinux_variants}; do
 	%{_sbindir}/semodule -s ${selinuxvariant} -i %{_datadir}/selinux/${selinuxvariant}/anzucoin.pp &> /dev/null || :
 done
-%{_sbindir}/semanage port -a -t anzucoin_port_t -p tcp 8332
+%{_sbindir}/semanage port -a -t anzucoin_port_t -p tcp 30138
 %{_sbindir}/semanage port -a -t anzucoin_port_t -p tcp 30139
-%{_sbindir}/semanage port -a -t anzucoin_port_t -p tcp 18332
+%{_sbindir}/semanage port -a -t anzucoin_port_t -p tcp 130138
 %{_sbindir}/semanage port -a -t anzucoin_port_t -p tcp 130139
 %{_sbindir}/fixfiles -R anzucoin-server restore &> /dev/null || :
 %{_sbindir}/restorecon -R %{_localstatedir}/lib/anzucoin || :
@@ -353,9 +353,9 @@ fi
 # SELinux
 if [ $1 -eq 0 ]; then
 	if [ `%{_sbindir}/sestatus |grep -c "disabled"` -eq 0 ]; then
-	%{_sbindir}/semanage port -d -p tcp 8332
+	%{_sbindir}/semanage port -d -p tcp 30138
 	%{_sbindir}/semanage port -d -p tcp 30139
-	%{_sbindir}/semanage port -d -p tcp 18332
+	%{_sbindir}/semanage port -d -p tcp 130138
 	%{_sbindir}/semanage port -d -p tcp 130139
 	for selinuxvariant in %{selinux_variants}; do
 		%{_sbindir}/semodule -s ${selinuxvariant} -r anzucoin &> /dev/null || :
