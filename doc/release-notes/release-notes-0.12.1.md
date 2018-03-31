@@ -184,7 +184,7 @@ Thanks to everyone who directly contributed to this release:
 
 - accraze
 - Alex Morcos
-- BtcDrak
+- ANZUDrak
 - Jonas Schnelli
 - Luke Dashjr
 - MarcoFalke

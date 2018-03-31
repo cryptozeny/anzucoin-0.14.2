@@ -147,7 +147,7 @@ Credits
 Thanks to everyone who directly contributed to this release:
 
 - Alex Morcos
-- BtcDrak
+- ANZUDrak
 - Cory Fields
 - fanquake
 - Gregory Maxwell

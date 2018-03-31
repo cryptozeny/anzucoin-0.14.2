@@ -429,7 +429,7 @@ Thanks to everyone who directly contributed to this release:
 - bikinibabe
 - AnzucoinPRReadingGroup
 - Blake Jakopovic
-- BtcDrak
+- ANZUDrak
 - charlescharles
 - Chris Arnesen
 - Ciemon

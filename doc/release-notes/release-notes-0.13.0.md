@@ -774,7 +774,7 @@ Thanks to everyone who directly contributed to this release:
 - Andrew Chow
 - Andrés G. Aragoneses
 - Bob McElrath
-- BtcDrak
+- ANZUDrak
 - calebogden
 - Cédric Félizard
 - Chirag Davé
