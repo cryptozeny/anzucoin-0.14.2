@@ -77,7 +77,7 @@ Bug fixes
 
 * Clicking on a anzucoin: URI on Windows should now launch Anzucoin-Qt properly.
 
-* When running -testnet, use RPC port 130138 by default.
+* When running -testnet, use RPC port 19138 by default.
 
 * Better detection and handling of corrupt wallet.dat and blkindex.dat files.
   Previous versions would crash with a DB_RUNRECOVERY exception, this

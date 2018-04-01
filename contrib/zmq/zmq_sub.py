@@ -7,7 +7,7 @@ import binascii
 import zmq
 import struct
 
-port = 230138
+port = 29138
 
 zmqContext = zmq.Context()
 zmqSubSocket = zmqContext.socket(zmq.SUB)
