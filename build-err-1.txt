@@ -1,0 +1,24 @@
+In file included from chainparams.cpp:17:0:
+chainparamsseeds.h:1179:1: error: narrowing conversion of ‘330139’ from ‘int’ to ‘uint16_t {aka short unsigned int}’ inside { } [-Wnarrowing]
+ };
+ ^
+chainparamsseeds.h:1179:1: error: narrowing conversion of ‘230139’ from ‘int’ to ‘uint16_t {aka short unsigned int}’ inside { } [-Wnarrowing]
+chainparamsseeds.h:1189:1: error: narrowing conversion of ‘130139’ from ‘int’ to ‘uint16_t {aka short unsigned int}’ inside { } [-Wnarrowing]
+ };
+ ^
+chainparamsseeds.h:1189:1: error: narrowing conversion of ‘130139’ from ‘int’ to ‘uint16_t {aka short unsigned int}’ inside { } [-Wnarrowing]
+chainparamsseeds.h:1189:1: error: narrowing conversion of ‘130139’ from ‘int’ to ‘uint16_t {aka short unsigned int}’ inside { } [-Wnarrowing]
+chainparamsseeds.h:1189:1: error: narrowing conversion of ‘130139’ from ‘int’ to ‘uint16_t {aka short unsigned int}’ inside { } [-Wnarrowing]
+chainparamsseeds.h:1189:1: error: narrowing conversion of ‘130139’ from ‘int’ to ‘uint16_t {aka short unsigned int}’ inside { } [-Wnarrowing]
+chainparamsseeds.h:1189:1: error: narrowing conversion of ‘130139’ from ‘int’ to ‘uint16_t {aka short unsigned int}’ inside { } [-Wnarrowing]
+chainparamsseeds.h:1189:1: error: narrowing conversion of ‘130139’ from ‘int’ to ‘uint16_t {aka short unsigned int}’ inside { } [-Wnarrowing]
+Makefile:4880: recipe for target 'libanzucoin_common_a-chainparams.o' failed
+make[2]: *** [libanzucoin_common_a-chainparams.o] Error 1
+make[2]: *** Waiting for unfinished jobs....
+make[2]: Leaving directory '/home/ak/git/anzucoin-0.14.2/src'
+Makefile:8910: recipe for target 'all-recursive' failed
+make[1]: *** [all-recursive] Error 1
+make[1]: Leaving directory '/home/ak/git/anzucoin-0.14.2/src'
+Makefile:688: recipe for target 'all-recursive' failed
+make: *** [all-recursive] Error 1
+ak@miyu:~/git/anzucoin-0.14.2$ 
