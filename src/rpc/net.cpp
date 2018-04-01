@@ -400,7 +400,7 @@ UniValue getnetworkinfo(const JSONRPCRequest& request)
             "\nResult:\n"
             "{\n"
             "  \"version\": xxxxx,                      (numeric) the server version\n"
-            "  \"subversion\": \"/Kawai:x.x.x/\",     (string) the server subversion string\n"
+            "  \"subversion\": \"/Satoshi:x.x.x/\",     (string) the server subversion string\n"
             "  \"protocolversion\": xxxxx,              (numeric) the protocol version\n"
             "  \"localservices\": \"xxxxxxxxxxxxxxxx\", (string) the services we offer to the network\n"
             "  \"localrelay\": true|false,              (bool) true if transaction relay is requested from peers\n"
