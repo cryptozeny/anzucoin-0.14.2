@@ -120,11 +120,11 @@ public:
         assert(genesis.hashMerkleRoot == uint256S("0x1c8cde57bd5a2bec5cb3171c7f6c90388581ec8c258c0faf2f07c5bc67aca50e"));
 
         // Note that of those with the service bits flag, most only support a subset of possible options
-        vSeeds.push_back(CDNSSeedData("anzucoin.sipa.be", "seed.anzucoin.sipa.be", true)); // Pieter Wuille, only supports x1, x5, x9, and xd
-        vSeeds.push_back(CDNSSeedData("bluematt.me", "dnsseed.bluematt.me", true)); // Matt Corallo, only supports x9
-        vSeeds.push_back(CDNSSeedData("dashjr.org", "dnsseed.anzucoin.dashjr.org")); // Luke Dashjr
-        vSeeds.push_back(CDNSSeedData("anzucoinstats.com", "seed.anzucoinstats.com", true)); // Christian Decker, supports x1 - xf
-        vSeeds.push_back(CDNSSeedData("anzucoin.jonasschnelli.ch", "seed.anzucoin.jonasschnelli.ch", true)); // Jonas Schnelli, only supports x1, x5, x9, and xd
+        //vSeeds.push_back(CDNSSeedData("anzucoin.sipa.be", "seed.anzucoin.sipa.be", true)); // Pieter Wuille, only supports x1, x5, x9, and xd
+        //vSeeds.push_back(CDNSSeedData("bluematt.me", "dnsseed.bluematt.me", true)); // Matt Corallo, only supports x9
+        // vSeeds.push_back(CDNSSeedData("dashjr.org", "dnsseed.anzucoin.dashjr.org")); // Luke Dashjr
+        // vSeeds.push_back(CDNSSeedData("anzucoinstats.com", "seed.anzucoinstats.com", true)); // Christian Decker, supports x1 - xf
+        // vSeeds.push_back(CDNSSeedData("anzucoin.jonasschnelli.ch", "seed.anzucoin.jonasschnelli.ch", true)); // Jonas Schnelli, only supports x1, x5, x9, and xd
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,83);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,5);
