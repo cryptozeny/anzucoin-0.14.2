@@ -44,13 +44,13 @@ static CBlock CreateGenesisBlock(const char* pszTimestamp, const CScript& genesi
  *
  * CBlock(hash=000000000019d6, ver=1, hashPrevBlock=00000000000000, hashMerkleRoot=4a5e1e, nTime=1522519783, nBits=1d00ffff, nNonce=359397780, vtx=1)
  *   CTransaction(hash=4a5e1e, ver=1, vin.size=1, vout.size=1, nLockTime=0)
- *     CTxIn(COutPoint(000000, -1), coinbase 04ffff001d010418416e7a752046757461626120697320736f206b6177616921)
+ *     CTxIn(COutPoint(000000, -1), coinbase 04ffff001d01040b416e7a7520467574616261)
  *     CTxOut(nValue=50.00000000, scriptPubKey=0x5F1DF16B2B704C8A578D0B)
  *   vMerkleTree: 4a5e1e
  */
 static CBlock CreateGenesisBlock(uint32_t nTime, uint32_t nNonce, uint32_t nBits, int32_t nVersion, const CAmount& genesisReward)
 {
-    const char* pszTimestamp = "Anzu Futaba is so kawai!";
+    const char* pszTimestamp = "Anzu Futaba";
     const CScript genesisOutputScript = CScript() << ParseHex("04678afdb0fe5548271967f1a67130b7105cd6a828e03909a67962e0ea1f61deb649f6bc3f4cef38c4f35504e51ec112de5c384df7ba0b8d578a4c702b6bf11d5f") << OP_CHECKSIG;
     return CreateGenesisBlock(pszTimestamp, genesisOutputScript, nTime, nNonce, nBits, nVersion, genesisReward);
 }
@@ -114,10 +114,10 @@ public:
         nDefaultPort = 30139;
         nPruneAfterHeight = 100000;
 
-        genesis = CreateGenesisBlock(1522519783, 359397780, 0x1d00ffff, 1, 50 * COIN);
+        genesis = CreateGenesisBlock(1522560682, 1639397737, 0x1d00ffff, 1, 50 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock == uint256S("0x00000000d2351d3a8f38ab135e589ee96f1b56c91ec91a02945f21db07b72cba"));
-        assert(genesis.hashMerkleRoot == uint256S("0x9d9fffa7585bc8757d77fe5f3c2f808fb8e5f6b2b93d14fc8d3b52cc14d67b09"));
+        assert(consensus.hashGenesisBlock == uint256S("0x000000009c0bc725a8c3184f17d80e0658ef46213c828bc333e704bf3a59dfee"));
+        assert(genesis.hashMerkleRoot == uint256S("0x1c8cde57bd5a2bec5cb3171c7f6c90388581ec8c258c0faf2f07c5bc67aca50e"));
 
         // Note that of those with the service bits flag, most only support a subset of possible options
         vSeeds.push_back(CDNSSeedData("anzucoin.sipa.be", "seed.anzucoin.sipa.be", true)); // Pieter Wuille, only supports x1, x5, x9, and xd
@@ -213,10 +213,10 @@ public:
         nDefaultPort = 130139;
         nPruneAfterHeight = 1000;
 
-        genesis = CreateGenesisBlock(1296688602, 1177776437, 0x1d00ffff, 1, 50 * COIN);
+        genesis = CreateGenesisBlock(1522560791, 1479690152, 0x1d00ffff, 1, 50 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock == uint256S("0x00000000cf43e497645bd9db421828878745f9c926efc26770f907aced011c22"));
-        assert(genesis.hashMerkleRoot == uint256S("0x9d9fffa7585bc8757d77fe5f3c2f808fb8e5f6b2b93d14fc8d3b52cc14d67b09"));
+        assert(consensus.hashGenesisBlock == uint256S("0x00000000f692ed6baa61f24df937fd171d4e3bc783fb858d6d05195f1efbcf3d"));
+        assert(genesis.hashMerkleRoot == uint256S("0x1c8cde57bd5a2bec5cb3171c7f6c90388581ec8c258c0faf2f07c5bc67aca50e"));
 
         vFixedSeeds.clear();
         vSeeds.clear();
@@ -298,10 +298,10 @@ public:
         nDefaultPort = 18444;
         nPruneAfterHeight = 1000;
 
-        genesis = CreateGenesisBlock(1522519783, 3, 0x207fffff, 1, 50 * COIN);
+        genesis = CreateGenesisBlock(1522560791, 5, 0x207fffff, 1, 50 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock == uint256S("0x29b90b756c626f84f5689eea1783f72c83dffa651f183459856eb01eb6037ca8"));
-        assert(genesis.hashMerkleRoot == uint256S("0x9d9fffa7585bc8757d77fe5f3c2f808fb8e5f6b2b93d14fc8d3b52cc14d67b09"));
+        assert(consensus.hashGenesisBlock == uint256S("0x0aa53739d9a0e0afb7a1a82b0b37abbfbfc51f65b5a9bd23a83b699b9e4c33d7"));
+        assert(genesis.hashMerkleRoot == uint256S("0x1c8cde57bd5a2bec5cb3171c7f6c90388581ec8c258c0faf2f07c5bc67aca50e"));
 
         vFixedSeeds.clear(); //!< Regtest mode doesn't have any fixed seeds.
         vSeeds.clear();      //!< Regtest mode doesn't have any DNS seeds.
