@@ -73,8 +73,8 @@ public:
         consensus.nSubsidyHalvingInterval = 210000;
         // consensus.BIP34Height = 227931;
         // consensus.BIP34Hash = uint256S("0x000000000000024b89b42a942fe0d9fea3bb44ab7bd1b19115dd6a759c0808b8");
-        consensus.BIP34Height = 0;
-        consensus.BIP34Hash = uint256S("0x000000009c0bc725a8c3184f17d80e0658ef46213c828bc333e704bf3a59dfee");
+        // consensus.BIP34Height = 0; 
+        // consensus.BIP34Hash = uint256S("0x000000009c0bc725a8c3184f17d80e0658ef46213c828bc333e704bf3a59dfee");
         // consensus.BIP65Height = 388381; // 000000000000000004c2b624ed5d7756c508d90fd0da2c7c679febfa6c4735f0
         // consensus.BIP65Height = 388381; // 000000000000000004c2b624ed5d7756c508d90fd0da2c7c679febfa6c4735f0
         // consensus.BIP66Height = 363725; // 00000000000000000379eaa19dce8c9b722d46ae6a57c2f1a988119488b50931
